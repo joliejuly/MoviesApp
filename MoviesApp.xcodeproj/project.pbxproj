@@ -83,6 +83,7 @@
 		F7FA8A652DE0AB090044EA73 /* Exceptions for "MoviesApp" folder in "MoviesApp" target */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
+				Info.plist,
 				Secrets.xcconfig,
 			);
 			target = F7B193202DE07214004F7C8D /* MoviesApp */;
@@ -486,6 +487,8 @@
 /* Begin XCBuildConfiguration section */
 		F7B193432DE07214004F7C8D /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReferenceAnchor = F7B193232DE07214004F7C8D /* MoviesApp */;
+			baseConfigurationReferenceRelativePath = Secrets.xcconfig;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
@@ -549,6 +552,8 @@
 		};
 		F7B193442DE07214004F7C8D /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReferenceAnchor = F7B193232DE07214004F7C8D /* MoviesApp */;
+			baseConfigurationReferenceRelativePath = Secrets.xcconfig;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
@@ -605,6 +610,8 @@
 		};
 		F7B193462DE07214004F7C8D /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReferenceAnchor = F7B193232DE07214004F7C8D /* MoviesApp */;
+			baseConfigurationReferenceRelativePath = Secrets.xcconfig;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -614,6 +621,7 @@
 				DEVELOPMENT_TEAM = K8T7A46X94;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = MoviesApp/Info.plist;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.entertainment";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -640,6 +648,8 @@
 		};
 		F7B193472DE07214004F7C8D /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReferenceAnchor = F7B193232DE07214004F7C8D /* MoviesApp */;
+			baseConfigurationReferenceRelativePath = Secrets.xcconfig;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -649,6 +659,7 @@
 				DEVELOPMENT_TEAM = K8T7A46X94;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = MoviesApp/Info.plist;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.entertainment";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
