@@ -7,9 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		F7B1936C2DE07355004F7C8D /* MVNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F7B193622DE07355004F7C8D /* MVNetwork.framework */; };
-		F7B193772DE07355004F7C8D /* MVNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F7B193622DE07355004F7C8D /* MVNetwork.framework */; settings = {ATTRIBUTES = (Required, ); }; };
-		F7B193782DE07355004F7C8D /* MVNetwork.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = F7B193622DE07355004F7C8D /* MVNetwork.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		F7FA8A3C2DE085410044EA73 /* MVNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F7FA8A322DE085400044EA73 /* MVNetwork.framework */; };
+		F7FA8A472DE085410044EA73 /* MVNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F7FA8A322DE085400044EA73 /* MVNetwork.framework */; };
+		F7FA8A482DE085410044EA73 /* MVNetwork.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = F7FA8A322DE085400044EA73 /* MVNetwork.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -27,26 +27,26 @@
 			remoteGlobalIDString = F7B193202DE07214004F7C8D;
 			remoteInfo = MoviesApp;
 		};
-		F7B1936D2DE07355004F7C8D /* PBXContainerItemProxy */ = {
+		F7FA8A3D2DE085410044EA73 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = F7B193192DE07214004F7C8D /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = F7B193612DE07355004F7C8D;
-			remoteInfo = Network;
+			remoteGlobalIDString = F7FA8A312DE085400044EA73;
+			remoteInfo = MVNetwork;
 		};
-		F7B1936F2DE07355004F7C8D /* PBXContainerItemProxy */ = {
+		F7FA8A3F2DE085410044EA73 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = F7B193192DE07214004F7C8D /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = F7B193202DE07214004F7C8D;
 			remoteInfo = MoviesApp;
 		};
-		F7B193752DE07355004F7C8D /* PBXContainerItemProxy */ = {
+		F7FA8A452DE085410044EA73 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = F7B193192DE07214004F7C8D /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = F7B193612DE07355004F7C8D;
-			remoteInfo = Network;
+			remoteGlobalIDString = F7FA8A312DE085400044EA73;
+			remoteInfo = MVNetwork;
 		};
 /* End PBXContainerItemProxy section */
 
@@ -57,7 +57,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				F7B193782DE07355004F7C8D /* MVNetwork.framework in Embed Frameworks */,
+				F7FA8A482DE085410044EA73 /* MVNetwork.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -68,17 +68,17 @@
 		F7B193212DE07214004F7C8D /* MoviesApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MoviesApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F7B193312DE07214004F7C8D /* MoviesAppTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MoviesAppTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		F7B1933B2DE07214004F7C8D /* MoviesAppUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MoviesAppUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		F7B193622DE07355004F7C8D /* MVNetwork.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = MVNetwork.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		F7B1936B2DE07355004F7C8D /* MVNetworkTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MVNetworkTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		F7FA8A322DE085400044EA73 /* MVNetwork.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = MVNetwork.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		F7FA8A3B2DE085410044EA73 /* MVNetworkTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MVNetworkTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
-		F77FF4C92DE0822100FE7071 /* Exceptions for "MVNetwork" folder in "MVNetwork" target */ = {
+		F7FA8A492DE085410044EA73 /* Exceptions for "MVNetwork" folder in "MVNetwork" target */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			publicHeaders = (
 				MVNetwork.h,
 			);
-			target = F7B193612DE07355004F7C8D /* MVNetwork */;
+			target = F7FA8A312DE085400044EA73 /* MVNetwork */;
 		};
 /* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
 
@@ -98,20 +98,15 @@
 			path = MoviesAppUITests;
 			sourceTree = "<group>";
 		};
-		F7B193632DE07355004F7C8D /* MVNetwork */ = {
+		F7FA8A332DE085400044EA73 /* MVNetwork */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			exceptions = (
-				F77FF4C92DE0822100FE7071 /* Exceptions for "MVNetwork" folder in "MVNetwork" target */,
-			);
-			explicitFolders = (
-				APIClients,
-				Common,
-				Util,
+				F7FA8A492DE085410044EA73 /* Exceptions for "MVNetwork" folder in "MVNetwork" target */,
 			);
 			path = MVNetwork;
 			sourceTree = "<group>";
 		};
-		F7B193712DE07355004F7C8D /* MVNetworkTests */ = {
+		F7FA8A412DE085410044EA73 /* MVNetworkTests */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			path = MVNetworkTests;
 			sourceTree = "<group>";
@@ -123,7 +118,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F7B193772DE07355004F7C8D /* MVNetwork.framework in Frameworks */,
+				F7FA8A472DE085410044EA73 /* MVNetwork.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -141,18 +136,18 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		F7B1935F2DE07355004F7C8D /* Frameworks */ = {
+		F7FA8A2F2DE085400044EA73 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		F7B193682DE07355004F7C8D /* Frameworks */ = {
+		F7FA8A382DE085410044EA73 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F7B1936C2DE07355004F7C8D /* MVNetwork.framework in Frameworks */,
+				F7FA8A3C2DE085410044EA73 /* MVNetwork.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -165,8 +160,8 @@
 				F7B193232DE07214004F7C8D /* MoviesApp */,
 				F7B193342DE07214004F7C8D /* MoviesAppTests */,
 				F7B1933E2DE07214004F7C8D /* MoviesAppUITests */,
-				F7B193632DE07355004F7C8D /* MVNetwork */,
-				F7B193712DE07355004F7C8D /* MVNetworkTests */,
+				F7FA8A332DE085400044EA73 /* MVNetwork */,
+				F7FA8A412DE085410044EA73 /* MVNetworkTests */,
 				F7B193222DE07214004F7C8D /* Products */,
 			);
 			sourceTree = "<group>";
@@ -177,8 +172,8 @@
 				F7B193212DE07214004F7C8D /* MoviesApp.app */,
 				F7B193312DE07214004F7C8D /* MoviesAppTests.xctest */,
 				F7B1933B2DE07214004F7C8D /* MoviesAppUITests.xctest */,
-				F7B193622DE07355004F7C8D /* MVNetwork.framework */,
-				F7B1936B2DE07355004F7C8D /* MVNetworkTests.xctest */,
+				F7FA8A322DE085400044EA73 /* MVNetwork.framework */,
+				F7FA8A3B2DE085410044EA73 /* MVNetworkTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -186,7 +181,7 @@
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
-		F7B1935D2DE07355004F7C8D /* Headers */ = {
+		F7FA8A2D2DE085400044EA73 /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -208,7 +203,7 @@
 			buildRules = (
 			);
 			dependencies = (
-				F7B193762DE07355004F7C8D /* PBXTargetDependency */,
+				F7FA8A462DE085410044EA73 /* PBXTargetDependency */,
 			);
 			fileSystemSynchronizedGroups = (
 				F7B193232DE07214004F7C8D /* MoviesApp */,
@@ -266,51 +261,51 @@
 			productReference = F7B1933B2DE07214004F7C8D /* MoviesAppUITests.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
 		};
-		F7B193612DE07355004F7C8D /* MVNetwork */ = {
+		F7FA8A312DE085400044EA73 /* MVNetwork */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = F7B1937F2DE07355004F7C8D /* Build configuration list for PBXNativeTarget "MVNetwork" */;
+			buildConfigurationList = F7FA8A4A2DE085410044EA73 /* Build configuration list for PBXNativeTarget "MVNetwork" */;
 			buildPhases = (
-				F7B1935D2DE07355004F7C8D /* Headers */,
-				F7B1935E2DE07355004F7C8D /* Sources */,
-				F7B1935F2DE07355004F7C8D /* Frameworks */,
-				F7B193602DE07355004F7C8D /* Resources */,
+				F7FA8A2D2DE085400044EA73 /* Headers */,
+				F7FA8A2E2DE085400044EA73 /* Sources */,
+				F7FA8A2F2DE085400044EA73 /* Frameworks */,
+				F7FA8A302DE085400044EA73 /* Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
 			fileSystemSynchronizedGroups = (
-				F7B193632DE07355004F7C8D /* MVNetwork */,
+				F7FA8A332DE085400044EA73 /* MVNetwork */,
 			);
 			name = MVNetwork;
 			packageProductDependencies = (
 			);
-			productName = Network;
-			productReference = F7B193622DE07355004F7C8D /* MVNetwork.framework */;
+			productName = MVNetwork;
+			productReference = F7FA8A322DE085400044EA73 /* MVNetwork.framework */;
 			productType = "com.apple.product-type.framework";
 		};
-		F7B1936A2DE07355004F7C8D /* MVNetworkTests */ = {
+		F7FA8A3A2DE085410044EA73 /* MVNetworkTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = F7B193802DE07355004F7C8D /* Build configuration list for PBXNativeTarget "MVNetworkTests" */;
+			buildConfigurationList = F7FA8A4D2DE085410044EA73 /* Build configuration list for PBXNativeTarget "MVNetworkTests" */;
 			buildPhases = (
-				F7B193672DE07355004F7C8D /* Sources */,
-				F7B193682DE07355004F7C8D /* Frameworks */,
-				F7B193692DE07355004F7C8D /* Resources */,
+				F7FA8A372DE085410044EA73 /* Sources */,
+				F7FA8A382DE085410044EA73 /* Frameworks */,
+				F7FA8A392DE085410044EA73 /* Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				F7B1936E2DE07355004F7C8D /* PBXTargetDependency */,
-				F7B193702DE07355004F7C8D /* PBXTargetDependency */,
+				F7FA8A3E2DE085410044EA73 /* PBXTargetDependency */,
+				F7FA8A402DE085410044EA73 /* PBXTargetDependency */,
 			);
 			fileSystemSynchronizedGroups = (
-				F7B193712DE07355004F7C8D /* MVNetworkTests */,
+				F7FA8A412DE085410044EA73 /* MVNetworkTests */,
 			);
 			name = MVNetworkTests;
 			packageProductDependencies = (
 			);
-			productName = NetworkTests;
-			productReference = F7B1936B2DE07355004F7C8D /* MVNetworkTests.xctest */;
+			productName = MVNetworkTests;
+			productReference = F7FA8A3B2DE085410044EA73 /* MVNetworkTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
@@ -334,10 +329,10 @@
 						CreatedOnToolsVersion = 16.1;
 						TestTargetID = F7B193202DE07214004F7C8D;
 					};
-					F7B193612DE07355004F7C8D = {
+					F7FA8A312DE085400044EA73 = {
 						CreatedOnToolsVersion = 16.1;
 					};
-					F7B1936A2DE07355004F7C8D = {
+					F7FA8A3A2DE085410044EA73 = {
 						CreatedOnToolsVersion = 16.1;
 						TestTargetID = F7B193202DE07214004F7C8D;
 					};
@@ -360,8 +355,8 @@
 				F7B193202DE07214004F7C8D /* MoviesApp */,
 				F7B193302DE07214004F7C8D /* MoviesAppTests */,
 				F7B1933A2DE07214004F7C8D /* MoviesAppUITests */,
-				F7B193612DE07355004F7C8D /* MVNetwork */,
-				F7B1936A2DE07355004F7C8D /* MVNetworkTests */,
+				F7FA8A312DE085400044EA73 /* MVNetwork */,
+				F7FA8A3A2DE085410044EA73 /* MVNetworkTests */,
 			);
 		};
 /* End PBXProject section */
@@ -388,14 +383,14 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		F7B193602DE07355004F7C8D /* Resources */ = {
+		F7FA8A302DE085400044EA73 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		F7B193692DE07355004F7C8D /* Resources */ = {
+		F7FA8A392DE085410044EA73 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -426,14 +421,14 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		F7B1935E2DE07355004F7C8D /* Sources */ = {
+		F7FA8A2E2DE085400044EA73 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		F7B193672DE07355004F7C8D /* Sources */ = {
+		F7FA8A372DE085410044EA73 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -453,20 +448,20 @@
 			target = F7B193202DE07214004F7C8D /* MoviesApp */;
 			targetProxy = F7B1933C2DE07214004F7C8D /* PBXContainerItemProxy */;
 		};
-		F7B1936E2DE07355004F7C8D /* PBXTargetDependency */ = {
+		F7FA8A3E2DE085410044EA73 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = F7B193612DE07355004F7C8D /* MVNetwork */;
-			targetProxy = F7B1936D2DE07355004F7C8D /* PBXContainerItemProxy */;
+			target = F7FA8A312DE085400044EA73 /* MVNetwork */;
+			targetProxy = F7FA8A3D2DE085410044EA73 /* PBXContainerItemProxy */;
 		};
-		F7B193702DE07355004F7C8D /* PBXTargetDependency */ = {
+		F7FA8A402DE085410044EA73 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = F7B193202DE07214004F7C8D /* MoviesApp */;
-			targetProxy = F7B1936F2DE07355004F7C8D /* PBXContainerItemProxy */;
+			targetProxy = F7FA8A3F2DE085410044EA73 /* PBXContainerItemProxy */;
 		};
-		F7B193762DE07355004F7C8D /* PBXTargetDependency */ = {
+		F7FA8A462DE085410044EA73 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = F7B193612DE07355004F7C8D /* MVNetwork */;
-			targetProxy = F7B193752DE07355004F7C8D /* PBXContainerItemProxy */;
+			target = F7FA8A312DE085400044EA73 /* MVNetwork */;
+			targetProxy = F7FA8A452DE085410044EA73 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -732,7 +727,7 @@
 			};
 			name = Release;
 		};
-		F7B1937A2DE07355004F7C8D /* Debug */ = {
+		F7FA8A4B2DE085410044EA73 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUILD_LIBRARY_FOR_DISTRIBUTION = YES;
@@ -755,23 +750,19 @@
 				MARKETING_VERSION = 1.0;
 				MODULE_VERIFIER_SUPPORTED_LANGUAGES = "objective-c objective-c++";
 				MODULE_VERIFIER_SUPPORTED_LANGUAGE_STANDARDS = "gnu17 gnu++20";
-				PRODUCT_BUNDLE_IDENTIFIER = com.joliejuly.moviesapp.Network;
+				PRODUCT_BUNDLE_IDENTIFIER = com.joliejuly.moviesapp.MVNetwork;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
-				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
-				SUPPORTS_MACCATALYST = NO;
-				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
-				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_INSTALL_OBJC_HEADER = NO;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = 1;
+				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
 			};
 			name = Debug;
 		};
-		F7B1937B2DE07355004F7C8D /* Release */ = {
+		F7FA8A4C2DE085410044EA73 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUILD_LIBRARY_FOR_DISTRIBUTION = YES;
@@ -794,23 +785,19 @@
 				MARKETING_VERSION = 1.0;
 				MODULE_VERIFIER_SUPPORTED_LANGUAGES = "objective-c objective-c++";
 				MODULE_VERIFIER_SUPPORTED_LANGUAGE_STANDARDS = "gnu17 gnu++20";
-				PRODUCT_BUNDLE_IDENTIFIER = com.joliejuly.moviesapp.Network;
+				PRODUCT_BUNDLE_IDENTIFIER = com.joliejuly.moviesapp.MVNetwork;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
-				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
-				SUPPORTS_MACCATALYST = NO;
-				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
-				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_INSTALL_OBJC_HEADER = NO;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = 1;
+				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
 			};
 			name = Release;
 		};
-		F7B1937C2DE07355004F7C8D /* Debug */ = {
+		F7FA8A4E2DE085410044EA73 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
@@ -818,20 +805,16 @@
 				DEVELOPMENT_TEAM = K8T7A46X94;
 				GENERATE_INFOPLIST_FILE = YES;
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.joliejuly.moviesapp.NetworkTests;
+				PRODUCT_BUNDLE_IDENTIFIER = com.joliejuly.moviesapp.MVNetworkTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
-				SUPPORTS_MACCATALYST = NO;
-				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
-				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = 1;
+				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/MoviesApp.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/MoviesApp";
 			};
 			name = Debug;
 		};
-		F7B1937D2DE07355004F7C8D /* Release */ = {
+		F7FA8A4F2DE085410044EA73 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
@@ -839,15 +822,11 @@
 				DEVELOPMENT_TEAM = K8T7A46X94;
 				GENERATE_INFOPLIST_FILE = YES;
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.joliejuly.moviesapp.NetworkTests;
+				PRODUCT_BUNDLE_IDENTIFIER = com.joliejuly.moviesapp.MVNetworkTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
-				SUPPORTS_MACCATALYST = NO;
-				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
-				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = 1;
+				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/MoviesApp.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/MoviesApp";
 			};
 			name = Release;
@@ -891,20 +870,20 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		F7B1937F2DE07355004F7C8D /* Build configuration list for PBXNativeTarget "MVNetwork" */ = {
+		F7FA8A4A2DE085410044EA73 /* Build configuration list for PBXNativeTarget "MVNetwork" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				F7B1937A2DE07355004F7C8D /* Debug */,
-				F7B1937B2DE07355004F7C8D /* Release */,
+				F7FA8A4B2DE085410044EA73 /* Debug */,
+				F7FA8A4C2DE085410044EA73 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		F7B193802DE07355004F7C8D /* Build configuration list for PBXNativeTarget "MVNetworkTests" */ = {
+		F7FA8A4D2DE085410044EA73 /* Build configuration list for PBXNativeTarget "MVNetworkTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				F7B1937C2DE07355004F7C8D /* Debug */,
-				F7B1937D2DE07355004F7C8D /* Release */,
+				F7FA8A4E2DE085410044EA73 /* Debug */,
+				F7FA8A4F2DE085410044EA73 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

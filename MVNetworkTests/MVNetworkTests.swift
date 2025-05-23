@@ -1,6 +1,6 @@
 //
-//  NetworkTests.swift
-//  NetworkTests
+//  MVNetworkTests.swift
+//  MVNetworkTests
 //
 //  Created by joliejuly on 23.05.2025.
 //
@@ -8,7 +8,7 @@
 import XCTest
 @testable import MVNetwork
 
-final class NetworkTests: XCTestCase {
+final class MVNetworkTests: XCTestCase {
 
     override func setUpWithError() throws {
         // Put setup code here. This method is called before the invocation of each test method in the class.
