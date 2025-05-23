@@ -4,5 +4,7 @@ enum Constants {
         "Content-Type": "application/json"
     ]
     
+    static let bundleIdentifier = "com.joliejuly.MovieApp"
+    
     
 }

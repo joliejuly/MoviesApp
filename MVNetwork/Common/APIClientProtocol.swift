@@ -1,4 +1,4 @@
 public protocol APIClientProtocol {
     var baseURL: URL { get }
-    func send<T: Decodable>(_ endpoint: Endpoint, as type: T.Type) async throws -> T
+    func send<Body: Encodable, Response: Decodable>(_ endpoint: Endpoint, body: Body?, type: Response.Type) async throws -> Response
 }

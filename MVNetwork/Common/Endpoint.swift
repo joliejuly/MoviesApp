@@ -3,7 +3,7 @@ public struct Endpoint {
     public let path: String
     public let method: HTTPMethod
     public let queryItems: [URLQueryItem]
-    public let body: Data?
+    public let body: Encodable?
     public let headers: [String: String]
     
     public init(
@@ -11,7 +11,7 @@ public struct Endpoint {
         method: HTTPMethod = .get,
         queryItems: [URLQueryItem] = [],
         headers: [String: String] = [:],
-        body: Data? = nil
+        body: Encodable? = nil
     ) {
         self.path = path
         self.method = method
