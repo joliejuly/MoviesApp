@@ -80,11 +80,29 @@
 			);
 			target = F7FA8A312DE085400044EA73 /* MVNetwork */;
 		};
+		F7FA8A652DE0AB090044EA73 /* Exceptions for "MoviesApp" folder in "MoviesApp" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Secrets.xcconfig,
+			);
+			target = F7B193202DE07214004F7C8D /* MoviesApp */;
+		};
+		F7FA8A662DE0AB090044EA73 /* Exceptions for "MoviesApp" folder in "MVNetwork" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Secrets.xcconfig,
+			);
+			target = F7FA8A312DE085400044EA73 /* MVNetwork */;
+		};
 /* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		F7B193232DE07214004F7C8D /* MoviesApp */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				F7FA8A652DE0AB090044EA73 /* Exceptions for "MoviesApp" folder in "MoviesApp" target */,
+				F7FA8A662DE0AB090044EA73 /* Exceptions for "MoviesApp" folder in "MVNetwork" target */,
+			);
 			path = MoviesApp;
 			sourceTree = "<group>";
 		};
