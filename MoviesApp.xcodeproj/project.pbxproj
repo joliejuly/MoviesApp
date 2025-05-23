@@ -7,9 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		F7B1936C2DE07355004F7C8D /* Network.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F7B193622DE07355004F7C8D /* Network.framework */; };
-		F7B193772DE07355004F7C8D /* Network.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F7B193622DE07355004F7C8D /* Network.framework */; };
-		F7B193782DE07355004F7C8D /* Network.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = F7B193622DE07355004F7C8D /* Network.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		F7B1936C2DE07355004F7C8D /* MVNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F7B193622DE07355004F7C8D /* MVNetwork.framework */; };
+		F7B193772DE07355004F7C8D /* MVNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F7B193622DE07355004F7C8D /* MVNetwork.framework */; settings = {ATTRIBUTES = (Required, ); }; };
+		F7B193782DE07355004F7C8D /* MVNetwork.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = F7B193622DE07355004F7C8D /* MVNetwork.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -57,7 +57,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				F7B193782DE07355004F7C8D /* Network.framework in Embed Frameworks */,
+				F7B193782DE07355004F7C8D /* MVNetwork.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -68,17 +68,17 @@
 		F7B193212DE07214004F7C8D /* MoviesApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MoviesApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F7B193312DE07214004F7C8D /* MoviesAppTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MoviesAppTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		F7B1933B2DE07214004F7C8D /* MoviesAppUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MoviesAppUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		F7B193622DE07355004F7C8D /* Network.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Network.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		F7B1936B2DE07355004F7C8D /* NetworkTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = NetworkTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		F7B193622DE07355004F7C8D /* MVNetwork.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = MVNetwork.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		F7B1936B2DE07355004F7C8D /* MVNetworkTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MVNetworkTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
-		F7B1937E2DE07355004F7C8D /* Exceptions for "Network" folder in "Network" target */ = {
+		F77FF4C92DE0822100FE7071 /* Exceptions for "MVNetwork" folder in "MVNetwork" target */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			publicHeaders = (
-				Network.h,
+				MVNetwork.h,
 			);
-			target = F7B193612DE07355004F7C8D /* Network */;
+			target = F7B193612DE07355004F7C8D /* MVNetwork */;
 		};
 /* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
 
@@ -98,17 +98,22 @@
 			path = MoviesAppUITests;
 			sourceTree = "<group>";
 		};
-		F7B193632DE07355004F7C8D /* Network */ = {
+		F7B193632DE07355004F7C8D /* MVNetwork */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			exceptions = (
-				F7B1937E2DE07355004F7C8D /* Exceptions for "Network" folder in "Network" target */,
+				F77FF4C92DE0822100FE7071 /* Exceptions for "MVNetwork" folder in "MVNetwork" target */,
 			);
-			path = Network;
+			explicitFolders = (
+				APIClients,
+				Common,
+				Util,
+			);
+			path = MVNetwork;
 			sourceTree = "<group>";
 		};
-		F7B193712DE07355004F7C8D /* NetworkTests */ = {
+		F7B193712DE07355004F7C8D /* MVNetworkTests */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
-			path = NetworkTests;
+			path = MVNetworkTests;
 			sourceTree = "<group>";
 		};
 /* End PBXFileSystemSynchronizedRootGroup section */
@@ -118,7 +123,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F7B193772DE07355004F7C8D /* Network.framework in Frameworks */,
+				F7B193772DE07355004F7C8D /* MVNetwork.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -147,7 +152,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F7B1936C2DE07355004F7C8D /* Network.framework in Frameworks */,
+				F7B1936C2DE07355004F7C8D /* MVNetwork.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -160,8 +165,8 @@
 				F7B193232DE07214004F7C8D /* MoviesApp */,
 				F7B193342DE07214004F7C8D /* MoviesAppTests */,
 				F7B1933E2DE07214004F7C8D /* MoviesAppUITests */,
-				F7B193632DE07355004F7C8D /* Network */,
-				F7B193712DE07355004F7C8D /* NetworkTests */,
+				F7B193632DE07355004F7C8D /* MVNetwork */,
+				F7B193712DE07355004F7C8D /* MVNetworkTests */,
 				F7B193222DE07214004F7C8D /* Products */,
 			);
 			sourceTree = "<group>";
@@ -172,8 +177,8 @@
 				F7B193212DE07214004F7C8D /* MoviesApp.app */,
 				F7B193312DE07214004F7C8D /* MoviesAppTests.xctest */,
 				F7B1933B2DE07214004F7C8D /* MoviesAppUITests.xctest */,
-				F7B193622DE07355004F7C8D /* Network.framework */,
-				F7B1936B2DE07355004F7C8D /* NetworkTests.xctest */,
+				F7B193622DE07355004F7C8D /* MVNetwork.framework */,
+				F7B1936B2DE07355004F7C8D /* MVNetworkTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -261,9 +266,9 @@
 			productReference = F7B1933B2DE07214004F7C8D /* MoviesAppUITests.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
 		};
-		F7B193612DE07355004F7C8D /* Network */ = {
+		F7B193612DE07355004F7C8D /* MVNetwork */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = F7B1937F2DE07355004F7C8D /* Build configuration list for PBXNativeTarget "Network" */;
+			buildConfigurationList = F7B1937F2DE07355004F7C8D /* Build configuration list for PBXNativeTarget "MVNetwork" */;
 			buildPhases = (
 				F7B1935D2DE07355004F7C8D /* Headers */,
 				F7B1935E2DE07355004F7C8D /* Sources */,
@@ -275,18 +280,18 @@
 			dependencies = (
 			);
 			fileSystemSynchronizedGroups = (
-				F7B193632DE07355004F7C8D /* Network */,
+				F7B193632DE07355004F7C8D /* MVNetwork */,
 			);
-			name = Network;
+			name = MVNetwork;
 			packageProductDependencies = (
 			);
 			productName = Network;
-			productReference = F7B193622DE07355004F7C8D /* Network.framework */;
+			productReference = F7B193622DE07355004F7C8D /* MVNetwork.framework */;
 			productType = "com.apple.product-type.framework";
 		};
-		F7B1936A2DE07355004F7C8D /* NetworkTests */ = {
+		F7B1936A2DE07355004F7C8D /* MVNetworkTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = F7B193802DE07355004F7C8D /* Build configuration list for PBXNativeTarget "NetworkTests" */;
+			buildConfigurationList = F7B193802DE07355004F7C8D /* Build configuration list for PBXNativeTarget "MVNetworkTests" */;
 			buildPhases = (
 				F7B193672DE07355004F7C8D /* Sources */,
 				F7B193682DE07355004F7C8D /* Frameworks */,
@@ -299,13 +304,13 @@
 				F7B193702DE07355004F7C8D /* PBXTargetDependency */,
 			);
 			fileSystemSynchronizedGroups = (
-				F7B193712DE07355004F7C8D /* NetworkTests */,
+				F7B193712DE07355004F7C8D /* MVNetworkTests */,
 			);
-			name = NetworkTests;
+			name = MVNetworkTests;
 			packageProductDependencies = (
 			);
 			productName = NetworkTests;
-			productReference = F7B1936B2DE07355004F7C8D /* NetworkTests.xctest */;
+			productReference = F7B1936B2DE07355004F7C8D /* MVNetworkTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
@@ -355,8 +360,8 @@
 				F7B193202DE07214004F7C8D /* MoviesApp */,
 				F7B193302DE07214004F7C8D /* MoviesAppTests */,
 				F7B1933A2DE07214004F7C8D /* MoviesAppUITests */,
-				F7B193612DE07355004F7C8D /* Network */,
-				F7B1936A2DE07355004F7C8D /* NetworkTests */,
+				F7B193612DE07355004F7C8D /* MVNetwork */,
+				F7B1936A2DE07355004F7C8D /* MVNetworkTests */,
 			);
 		};
 /* End PBXProject section */
@@ -450,7 +455,7 @@
 		};
 		F7B1936E2DE07355004F7C8D /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = F7B193612DE07355004F7C8D /* Network */;
+			target = F7B193612DE07355004F7C8D /* MVNetwork */;
 			targetProxy = F7B1936D2DE07355004F7C8D /* PBXContainerItemProxy */;
 		};
 		F7B193702DE07355004F7C8D /* PBXTargetDependency */ = {
@@ -460,7 +465,7 @@
 		};
 		F7B193762DE07355004F7C8D /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = F7B193612DE07355004F7C8D /* Network */;
+			target = F7B193612DE07355004F7C8D /* MVNetwork */;
 			targetProxy = F7B193752DE07355004F7C8D /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -753,10 +758,14 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.joliejuly.moviesapp.Network;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_INSTALL_OBJC_HEADER = NO;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
 			};
@@ -788,10 +797,14 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.joliejuly.moviesapp.Network;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_INSTALL_OBJC_HEADER = NO;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
 			};
@@ -878,7 +891,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		F7B1937F2DE07355004F7C8D /* Build configuration list for PBXNativeTarget "Network" */ = {
+		F7B1937F2DE07355004F7C8D /* Build configuration list for PBXNativeTarget "MVNetwork" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				F7B1937A2DE07355004F7C8D /* Debug */,
@@ -887,7 +900,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		F7B193802DE07355004F7C8D /* Build configuration list for PBXNativeTarget "NetworkTests" */ = {
+		F7B193802DE07355004F7C8D /* Build configuration list for PBXNativeTarget "MVNetworkTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				F7B1937C2DE07355004F7C8D /* Debug */,

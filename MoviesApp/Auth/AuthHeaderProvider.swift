@@ -1,4 +1,4 @@
-import Network
+import MVNetwork
 
 struct AuthHeaderProvider: HeaderProvider {
     let tokenStore: TokenStore
