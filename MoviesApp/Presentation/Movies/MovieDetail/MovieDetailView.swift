@@ -8,12 +8,12 @@ struct MovieDetailView: View {
     
     var body: some View {
         VStack(alignment: .leading, spacing: 12) {
-            
+            image
             if let movie {
                 Text("Original title: \(movie.originalTitle)")
                     .font(.caption)
             }
-            if let detail = viewModel.movieDetail {
+            if let detail = viewModel.movieDetailInfo?.movieDetail {
                 Text("Genres: \(detail.genres.map(\.name).joined(separator: ", "))")
                     .font(.body)
                 Text("Budget: \(detail.budget)")
@@ -33,5 +33,19 @@ struct MovieDetailView: View {
         }
         .navigationBarTitleDisplayMode(.inline)
         .navigationTitle(movie?.title ?? "Movie Detail")
+    }
+    
+    private var image: some View {
+        ZStack {
+            RoundedRectangle(cornerRadius: 8)
+                .fill(Color.gray)
+            if let image = viewModel.movieDetailInfo?.movieImage {
+                image
+                .resizable()
+                .aspectRatio(contentMode: .fit)
+                .clipShape(RoundedRectangle(cornerRadius: 8))
+            }
+        }
+        .frame(maxWidth: .infinity)
     }
 }
