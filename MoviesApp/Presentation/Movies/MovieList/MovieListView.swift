@@ -1,7 +1,8 @@
 import SwiftUI
 
 struct MovieListView: View {
-    @StateObject private var viewModel: MovieListViewModel = makeListVM()
+    
+    @StateObject private var viewModel = MovieListViewModel()
     
     @State private var path: [Movie] = []
     @State private var selectedMovie: Movie?
@@ -14,9 +15,6 @@ struct MovieListView: View {
                         .task(id: movie.id) {
                             try? await viewModel.loadMoreIfNeeded(currentItem: movie)
                         }
-//                        .onTapGesture {
-//                            selectedMovie = movie
-//                        }
                 }
             }
             .navigationDestination(for: Movie.self) { movie in

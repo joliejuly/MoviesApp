@@ -4,7 +4,7 @@ struct MovieDetailView: View {
     
     let movie: Movie?
     
-    @StateObject private var viewModel = makeDetailVM()
+    @StateObject private var viewModel = MovieDetailViewModel()
     
     var body: some View {
         VStack(alignment: .leading, spacing: 12) {

@@ -1,21 +1,18 @@
 import MVNetwork
+import Dependencies
 
-// TODO: move to Dependencies
-@MainActor func makeListVM() -> MovieListViewModel {
-    let headerProvider = AuthHeaderProvider(tokenStore: DefaultTokenStore())
-    let api = APIClient(headerProvider: headerProvider)
-    let apiClient = TMDBApiClient(api: api)
-    let movieService = MovieServiceImpl(apiClient: apiClient)
-    let viewModel = MovieListViewModel(movieService: movieService)
-    return viewModel
+extension DependencyValues {
+    var movieService: MovieService {
+        get { self[MovieServiceKey.self] }
+        set { self[MovieServiceKey.self] = newValue }
+    }
 }
 
-// TODO: move to Dependencies
-@MainActor func makeDetailVM() -> MovieDetailViewModel {
-    let headerProvider = AuthHeaderProvider(tokenStore: DefaultTokenStore())
-    let api = APIClient(headerProvider: headerProvider)
-    let apiClient = TMDBApiClient(api: api)
-    let movieService = MovieServiceImpl(apiClient: apiClient)
-    let viewModel = MovieDetailViewModel(movieService: movieService)
-    return viewModel
+private enum MovieServiceKey: DependencyKey {
+    static let liveValue: MovieService = {
+        let headerProvider = AuthHeaderProvider(tokenStore: DefaultTokenStore())
+        let api = APIClient(headerProvider: headerProvider)
+        let apiClient = TMDBApiClient(api: api)
+        return MovieServiceImpl(apiClient: apiClient)
+    }()
 }

@@ -1,15 +1,16 @@
 import Combine
+import Dependencies
 
 @MainActor
 final class MovieListViewModel: ObservableObject {
+    
+    @Dependency(\.movieService) private var movieService
     @Published private(set) var movies: [Movie] = []
     
-    private let paginator: Paginator<Movie>
-    
-    init(movieService: MovieService) {
-        paginator = Paginator(loadPage: movieService.fetchLatest)
-    }
-    
+    private lazy var paginator: Paginator<Movie> = {
+        Paginator(loadPage: movieService.fetchLatest)
+    }()
+
     func loadMoreIfNeeded(currentItem: Movie? = nil) async throws {
         guard
             currentItem == nil ||

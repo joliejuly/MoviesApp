@@ -10,6 +10,9 @@
 		F7FA8A3C2DE085410044EA73 /* MVNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F7FA8A322DE085400044EA73 /* MVNetwork.framework */; };
 		F7FA8A472DE085410044EA73 /* MVNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F7FA8A322DE085400044EA73 /* MVNetwork.framework */; };
 		F7FA8A482DE085410044EA73 /* MVNetwork.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = F7FA8A322DE085400044EA73 /* MVNetwork.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		F7FA8B512DE227430044EA73 /* Dependencies in Frameworks */ = {isa = PBXBuildFile; productRef = F7FA8B502DE227430044EA73 /* Dependencies */; };
+		F7FA8B532DE227430044EA73 /* DependenciesMacros in Frameworks */ = {isa = PBXBuildFile; productRef = F7FA8B522DE227430044EA73 /* DependenciesMacros */; };
+		F7FA8B552DE227430044EA73 /* DependenciesTestSupport in Frameworks */ = {isa = PBXBuildFile; productRef = F7FA8B542DE227430044EA73 /* DependenciesTestSupport */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -138,6 +141,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				F7FA8A472DE085410044EA73 /* MVNetwork.framework in Frameworks */,
+				F7FA8B512DE227430044EA73 /* Dependencies in Frameworks */,
+				F7FA8B532DE227430044EA73 /* DependenciesMacros in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -145,6 +150,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F7FA8B552DE227430044EA73 /* DependenciesTestSupport in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -229,6 +235,8 @@
 			);
 			name = MoviesApp;
 			packageProductDependencies = (
+				F7FA8B502DE227430044EA73 /* Dependencies */,
+				F7FA8B522DE227430044EA73 /* DependenciesMacros */,
 			);
 			productName = MoviesApp;
 			productReference = F7B193212DE07214004F7C8D /* MoviesApp.app */;
@@ -252,6 +260,7 @@
 			);
 			name = MoviesAppTests;
 			packageProductDependencies = (
+				F7FA8B542DE227430044EA73 /* DependenciesTestSupport */,
 			);
 			productName = MoviesAppTests;
 			productReference = F7B193312DE07214004F7C8D /* MoviesAppTests.xctest */;
@@ -366,6 +375,9 @@
 			);
 			mainGroup = F7B193182DE07214004F7C8D;
 			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				F7FA8B4F2DE227430044EA73 /* XCRemoteSwiftPackageReference "swift-dependencies" */,
+			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = F7B193222DE07214004F7C8D /* Products */;
 			projectDirPath = "";
@@ -918,6 +930,35 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		F7FA8B4F2DE227430044EA73 /* XCRemoteSwiftPackageReference "swift-dependencies" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "git@github.com:pointfreeco/swift-dependencies.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.9.2;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		F7FA8B502DE227430044EA73 /* Dependencies */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = F7FA8B4F2DE227430044EA73 /* XCRemoteSwiftPackageReference "swift-dependencies" */;
+			productName = Dependencies;
+		};
+		F7FA8B522DE227430044EA73 /* DependenciesMacros */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = F7FA8B4F2DE227430044EA73 /* XCRemoteSwiftPackageReference "swift-dependencies" */;
+			productName = DependenciesMacros;
+		};
+		F7FA8B542DE227430044EA73 /* DependenciesTestSupport */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = F7FA8B4F2DE227430044EA73 /* XCRemoteSwiftPackageReference "swift-dependencies" */;
+			productName = DependenciesTestSupport;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = F7B193192DE07214004F7C8D /* Project object */;
 }
