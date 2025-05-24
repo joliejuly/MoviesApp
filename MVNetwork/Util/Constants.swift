@@ -1,4 +1,4 @@
-enum Constants {
+public enum Constants {
     
     static let defaultHeaders: [String: String] = [
         "Content-Type": "application/json"
@@ -6,5 +6,5 @@ enum Constants {
     
     static let bundleIdentifier = "com.joliejuly.MovieApp"
     
-    
+    public static let baseURL = URL(string: "https://api.themoviedb.org/3")!
 }

@@ -1,5 +1,3 @@
-import Foundation
-
 let yyyyMMddDateFormatter: DateFormatter = {
     let formatter = DateFormatter()
     formatter.dateFormat = "yyyy-MM-dd"

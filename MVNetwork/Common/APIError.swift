@@ -4,6 +4,7 @@ public enum APIError: Error, LocalizedError {
     case http(statusCode: Int, data: Data?)
     case decoding(Error)
     case unknown
+    case notImplemented
     
     public var description: String {
         switch self {
@@ -15,8 +16,11 @@ public enum APIError: Error, LocalizedError {
                 return "HTTP error \(code)"
             case .decoding(let error):
                 return "Decoding error: \(error.localizedDescription)"
+            case .notImplemented:
+                return "Api client method not implemented"
             case .unknown:
                 return "Unknown error"
+            
         }
     }
 }

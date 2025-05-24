@@ -3,8 +3,6 @@ import Foundation
 
 public actor APIClient: APIClientProtocol {
     
-    public let baseURL: URL
-    
     private let session: URLSession
     private let decoder: JSONDecoder
     private let encoder: JSONEncoder
@@ -12,7 +10,6 @@ public actor APIClient: APIClientProtocol {
     private let headerProvider: HeaderProvider?
     
     public init(
-        baseURL: URL,
         session: URLSession = .shared,
         headerProvider: HeaderProvider? = nil,
         decoder: JSONDecoder = {
@@ -26,21 +23,39 @@ public actor APIClient: APIClientProtocol {
             return d
         }()
     ) {
-        self.baseURL = baseURL
         self.session = session
         self.headerProvider = headerProvider
         self.decoder = decoder
         self.encoder = encoder
     }
     
-    public func send<Body: Encodable, Response: Decodable>(_ endpoint: Endpoint, body: Body? = nil, type: Response.Type) async throws -> Response {
+    public func send<Body: Encodable, Response: Decodable>(_ endpoint: Endpoint, body: Body? = nil, type: Response.Type, baseURL: URL) async throws -> Response {
         
         let url = try makeURL(baseURL: baseURL, endpoint: endpoint)
-        let request = try makeRequest(url: url, endpoint: endpoint, body: body)
+        var request = try makeRequest(url: url, endpoint: endpoint)
         
-        logger.debug("📡 → \(endpoint.method.rawValue) \(url.absoluteString)")
+        if let body {
+            let encoded = try encoder.encode(body)
+            request.httpBody = encoded
+        }
+        
+        logRequestStart(url: url, endpoint: endpoint, request: request)
         
         return try await perform(request, decodeTo: type)
+    }
+    
+    public func send<Response: Decodable>(_ endpoint: Endpoint, type: Response.Type, baseURL: URL) async throws -> Response {
+        
+        let url = try makeURL(baseURL: baseURL, endpoint: endpoint)
+        let request = try makeRequest(url: url, endpoint: endpoint)
+        
+        logRequestStart(url: url, endpoint: endpoint, request: request)
+        
+        return try await perform(request, decodeTo: type)
+    }
+    
+    private func logRequestStart(url: URL, endpoint: Endpoint, request: URLRequest) {
+        logger.debug("📡 → \(endpoint.method.rawValue.uppercased()) \(url.absoluteString) headers: \(String(describing: request.allHTTPHeaderFields))")
     }
     
     private func perform<Response: Decodable>(
@@ -97,15 +112,10 @@ public actor APIClient: APIClientProtocol {
         return url
     }
     
-    private func makeRequest<Body: Encodable>(url: URL, endpoint: Endpoint, body: Body? = nil) throws -> URLRequest {
+    private func makeRequest(url: URL, endpoint: Endpoint) throws -> URLRequest {
         
         var request = URLRequest(url: url)
-        request.httpMethod = endpoint.method.rawValue
-        
-        if let body {
-            let encoded = try encoder.encode(body)
-            request.httpBody = encoded
-        }
+        request.httpMethod = endpoint.method.rawValue.uppercased()
         
         let headers = headerProvider?.headers(for: endpoint)
         headers?.forEach {

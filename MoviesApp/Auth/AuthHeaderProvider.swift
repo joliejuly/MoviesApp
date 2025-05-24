@@ -6,8 +6,8 @@ struct AuthHeaderProvider: HeaderProvider {
     func headers(for endpoint: Endpoint) -> [String: String] {
         var all = defaultHeaders()
         endpoint.headers.forEach { all[$0] = $1 }
-        if let t = tokenStore.currentToken {
-            all["Authorization", default: ""] = "Bearer \(t)"
+        if let token = tokenStore.currentToken {
+            all["Authorization", default: ""] = "Bearer \(token)"
         }
         return all
     }
