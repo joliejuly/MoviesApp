@@ -14,6 +14,7 @@ struct MovieCell: View {
             }
             Spacer()
         }
+        .contentShape(Rectangle())
         .task(id: movie.id) {
             
         }

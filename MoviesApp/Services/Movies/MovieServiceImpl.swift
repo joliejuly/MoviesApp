@@ -7,13 +7,19 @@ final class MovieServiceImpl: MovieService {
         self.api = apiClient
     }
     
-    func fetchNowPlaying(page: Int) async throws -> Page<Movie> {
+    func fetchLatest(page: Int) async throws -> Page<Movie> {
         let dtoPage = try await api.fetchLatestMovies(page: page)
-        let movies = dtoPage.results.map { Movie(dto: $0) }
+        let movies = dtoPage.results.map { MovieMapper.map($0) }
         return Page(
             index: dtoPage.page,
             items: movies,
             totalPages: dtoPage.totalPages
         )
+    }
+    
+    func fetchDetails(id: Int) async throws -> MovieDetail {
+        let dto = try await api.fetchMovieDetail(id: id)
+        let movieDetail = MovieDetailMapper.map(dto)
+        return movieDetail
     }
 }
