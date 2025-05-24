@@ -21,16 +21,15 @@ public struct TMDBApiClient: MovieAPIClient {
                 URLQueryItem(name: "release_date.lte", value: date),
                 URLQueryItem(name: "page", value: "\(page)"),
                 URLQueryItem(name: "append_to_response", value: "images"),
-//                URLQueryItem(name: "language", value: language),
-//                URLQueryItem(name: "include_image_language", value: "\(shortLanguageCode),null")
+                URLQueryItem(name: "language", value: language),
+                URLQueryItem(name: "include_image_language", value: "\(shortLanguageCode),null")
             ]
         )
         return try await api.send(endpoint, type: PaginatedResponseDTO<MovieDTO>.self, baseURL: baseURL)
     }
     
     public func fetchMovieDetail(id: Int) async throws -> MovieDTO {
-        // TODO:
-        return MovieDTO(id: 1)
+        fatalError()
     }
 }
 

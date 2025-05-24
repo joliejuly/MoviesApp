@@ -6,8 +6,8 @@ final class MovieListViewModel: ObservableObject {
     
     private let paginator: Paginator<Movie>
     
-    init(repository: MovieRepository) {
-        paginator = Paginator(loadPage: repository.fetchNowPlaying)
+    init(movieService: MovieService) {
+        paginator = Paginator(loadPage: movieService.fetchNowPlaying)
     }
     
     func loadMoreIfNeeded(currentItem: Movie? = nil) async throws {

@@ -1,7 +1,7 @@
 import SwiftUI
 
 struct MovieListView: View {
-    @StateObject private var viewModel: MovieListViewModel = makeListVM()
+    @StateObject private var viewModel: MovieListViewModel = makeListVM() // TODO: dependency
     
     var body: some View {
         List(viewModel.movies) { movie in
@@ -9,7 +9,9 @@ struct MovieListView: View {
                 .task(id: movie.id) {
                     try? await viewModel.loadMoreIfNeeded(currentItem: movie)
                 }
-                .onTapGesture {}
+                .onTapGesture {
+                    // TODO: show detail
+                }
         }
         .navigationTitle("Recent movies")
         .task {

@@ -28,7 +28,7 @@ final class Paginator<Item> {
             totalPages = page.totalPages
             currentPage += 1
         } catch {
-            // TODO: retry
+            // TODO: retry 
             throw error
         }
     }

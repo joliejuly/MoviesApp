@@ -15,11 +15,13 @@ public actor APIClient: APIClientProtocol {
         decoder: JSONDecoder = {
             let d = JSONDecoder()
             d.keyDecodingStrategy = .convertFromSnakeCase
+            d.dateDecodingStrategy = .formatted(yyyyMMddDateFormatter)
             return d
         }(),
         encoder: JSONEncoder = {
             let d = JSONEncoder()
             d.keyEncodingStrategy = .convertToSnakeCase
+            d.dateEncodingStrategy = .formatted(yyyyMMddDateFormatter)
             return d
         }()
     ) {

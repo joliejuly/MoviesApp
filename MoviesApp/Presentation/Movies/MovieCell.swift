@@ -4,7 +4,21 @@ struct MovieCell: View {
     let movie: Movie
     
     var body: some View {
-        Text(movie.id.description)
+        HStack {
+            // image
+            VStack(alignment: .leading, spacing: 12) {
+                Text(movie.title)
+                    .font(.headline)
+                Text(movie.originalTitle)
+                    .font(.body)
+            }
+            Spacer()
+        }
+        .task(id: movie.id) {
+            
+        }
     }
 }
+
+
 
