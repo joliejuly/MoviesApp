@@ -1,7 +1,7 @@
 public struct TMDBApiClient: MovieAPIClient {
     
     private let baseURL: URL
-    private let api: APIClient
+    private let api: APIClientProtocol
     
     private var imageConfig: ImageConfigurationDTO?
     
@@ -9,7 +9,7 @@ public struct TMDBApiClient: MovieAPIClient {
         Locale.autoupdatingCurrent.identifier
     }
     
-    public init(api: APIClient, baseURL: URL = Constants.baseURL) {
+    public init(api: APIClientProtocol, baseURL: URL = Constants.baseURL) {
         self.api = api
         self.baseURL = baseURL
     }

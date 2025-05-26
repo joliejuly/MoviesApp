@@ -1,33 +1,27 @@
 public actor TMDBApiImageLoader: ImageLoader {
     
-    private let api: APIClient
+    private let api: APIClientProtocol
     
     private var baseURL: URL
     private var imageConfig: ImageConfigurationDTO?
     
     private var loadImageTasks: [String: Task<Data, Error>] = [:]
     
-    private let thumbnailCache = LRUCache<URL, Data>(capacity: 80)
-    private let detailImageCache = LRUCache<URL, Data>(capacity: 15)
+    private let thumbnailCache = LRUCache<String, Data>(capacity: 80)
+    private let detailImageCache = LRUCache<String, Data>(capacity: 15)
     
     private var language: String {
         Locale.autoupdatingCurrent.identifier
     }
     
-    public init(api: APIClient, baseURL: URL = Constants.imagesBaseURL) {
+    public init(api: APIClientProtocol, baseURL: URL = Constants.imagesBaseURL) {
         self.api = api
         self.baseURL = baseURL
     }
     
     public func fetchImage(path: String, size: ImageSize) async throws -> Data {
-        
         let sizeString = getSizeString(for: size)
-        
-        let url = baseURL
-            .appending(path: sizeString)
-            .appending(path: path)
-        
-        let pathWithSize = url.path
+        let pathWithSize = "\(sizeString)\(path)"
         
         if
             let runningTask = loadImageTasks[pathWithSize],
@@ -40,14 +34,14 @@ public actor TMDBApiImageLoader: ImageLoader {
             
             let cache = (size == .small) ? thumbnailCache : detailImageCache
             
-            if let cached = await cache.value(forKey: url) {
+            if let cached = await cache.value(forKey: pathWithSize) {
                 return cached
             }
             
             let endpoint = Endpoint(path: pathWithSize)
             let data = try await api.fetchData(endpoint, baseURL: baseURL)
 
-            await cache.insert(data, forKey: url)
+            await cache.insert(data, forKey: pathWithSize)
             
             loadImageTasks[path] = nil
             
@@ -61,10 +55,11 @@ public actor TMDBApiImageLoader: ImageLoader {
 
     private func fetchImageConfigIfNeeded() async throws {
         guard imageConfig == nil else { return }
+        let baseURLConfiguration = Constants.baseURL
         let endpoint = Endpoint(path: "/configuration")
-        let config = try await api.send(endpoint, type: ImageConfigurationDTO.self, baseURL: baseURL)
-        self.imageConfig = config
-        if let url = URL(string: config.secureBaseURL) {
+        let config = try await api.send(endpoint, type: ConfigurationDTO.self, baseURL: baseURLConfiguration)
+        self.imageConfig = config.images
+        if let url = URL(string: config.images.secureBaseUrl) {
             self.baseURL = url
         }
     }

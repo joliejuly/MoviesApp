@@ -29,7 +29,7 @@ struct MovieDetailView: View {
         .frame(maxWidth: .infinity, alignment: .leading)
         .padding(.horizontal, 24)
         .task(id: movie?.id) {
-            try? await viewModel.loadDetails(id: movie?.id ?? 0)
+            try? await viewModel.loadDetails(for: movie)
         }
         .navigationBarTitleDisplayMode(.inline)
         .navigationTitle(movie?.title ?? "Movie Detail")

@@ -1,7 +1,7 @@
 import SwiftUI
 
 @main
-struct MoviesAppApp: App {
+struct MoviesApp: App {
     
     @UIApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
     
