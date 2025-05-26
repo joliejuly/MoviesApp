@@ -21,7 +21,7 @@ final class MovieListViewModel: ObservableObject {
             try await paginator.loadNextPage()
             movies = await paginator.items
         } catch {
-            // TODO: show error
+            // not showing error here due to infinite scroll
         }
     }
 }

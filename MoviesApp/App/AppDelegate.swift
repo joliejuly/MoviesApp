@@ -11,15 +11,15 @@ final class AppDelegate: NSObject, UIApplicationDelegate {
     }
     
     private func observeMemoryWarnings() {
+        @Dependency(\.movieImageLoader) var movieImageLoader
+
         NotificationCenter.default.addObserver(
             forName: UIApplication.didReceiveMemoryWarningNotification,
             object: nil,
             queue: .main
         ) { _ in
             Task {
-               // clear cache
-//                let loader = DependencyValues._current.imageLoader
-//                await loader.clearCache()
+                await movieImageLoader.clearCache()
             }
         }
     }

@@ -52,6 +52,12 @@ public actor TMDBApiImageLoader: ImageLoader {
         
         return try await task.value
     }
+    
+    public func clearCache() async {
+        async let didClearThumbnails: () = thumbnailCache.clear()
+        async let didClearDetails: () = detailImageCache.clear()
+        _ = await (didClearThumbnails, didClearDetails)
+    }
 
     private func fetchImageConfigIfNeeded() async throws {
         guard imageConfig == nil else { return }

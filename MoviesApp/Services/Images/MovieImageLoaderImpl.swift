@@ -20,6 +20,10 @@ final class MovieImageLoaderImpl: MovieImageLoader {
         return image(from: data)
     }
     
+    func clearCache() async {
+        await api.clearCache()
+    }
+    
     private func image(from data: Data) -> Image? {
         guard let uiImage = UIImage(data: data) else { return nil }
         let image = Image(uiImage: uiImage)
