@@ -19,7 +19,7 @@ final class MovieListViewModel: ObservableObject {
         
         do {
             try await paginator.loadNextPage()
-            movies = paginator.items
+            movies = await paginator.items
         } catch {
             // TODO: show error
         }

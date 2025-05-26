@@ -7,29 +7,31 @@ struct MovieDetailView: View {
     @StateObject private var viewModel = MovieDetailViewModel()
     
     var body: some View {
-        VStack(alignment: .leading, spacing: 12) {
-            image
-            if let movie {
-                Text("Original title: \(movie.originalTitle)")
-                    .font(.caption)
+        ScrollView(showsIndicators: false) {
+            VStack(alignment: .leading, spacing: 12) {
+                image
+                if let movie {
+                    Text("Original title: \(movie.originalTitle)")
+                        .font(.caption)
+                }
+                if let detail = viewModel.movieDetailInfo?.movieDetail {
+                    Text("Genres: \(detail.genres.map(\.name).joined(separator: ", "))")
+                        .font(.body)
+                    Text("Budget: \(detail.budget)")
+                        .font(.body)
+                    Text(detail.overview)
+                        .font(.body)
+                } else {
+                    ProgressView()
+                }
+                
+                Spacer()
             }
-            if let detail = viewModel.movieDetailInfo?.movieDetail {
-                Text("Genres: \(detail.genres.map(\.name).joined(separator: ", "))")
-                    .font(.body)
-                Text("Budget: \(detail.budget)")
-                    .font(.body)
-                Text(detail.overview)
-                    .font(.body)
-            } else {
-                ProgressView()
+            .frame(maxWidth: .infinity, alignment: .leading)
+            .padding(.horizontal, 24)
+            .task(id: movie?.id) {
+                try? await viewModel.loadDetails(for: movie)
             }
-            
-            Spacer()
-        }
-        .frame(maxWidth: .infinity, alignment: .leading)
-        .padding(.horizontal, 24)
-        .task(id: movie?.id) {
-            try? await viewModel.loadDetails(for: movie)
         }
         .navigationBarTitleDisplayMode(.inline)
         .navigationTitle(movie?.title ?? "Movie Detail")
