@@ -56,6 +56,21 @@ public actor APIClient: APIClientProtocol {
         return try await perform(request, decodeTo: type)
     }
     
+    public func fetchData(_ endpoint: Endpoint, baseURL: URL) async throws -> Data {
+        let url = try makeURL(baseURL: baseURL, endpoint: endpoint)
+        let request = try makeRequest(url: url, endpoint: endpoint)
+        
+        logger.debug("📡 → FETCH-DATA \(url.absoluteString)")
+        
+        let (data, response) = try await session.data(for: request)
+        guard let http = response as? HTTPURLResponse, (200...299).contains(http.statusCode) else {
+            let code = (response as? HTTPURLResponse)?.statusCode ?? -1
+            logger.error("🚫 HTTP \(code) for \(url)")
+            throw APIError.http(statusCode: code, data: data)
+        }
+        return data
+    }
+    
     private func logRequestStart(url: URL, endpoint: Endpoint, request: URLRequest) {
         logger.debug("📡 → \(endpoint.method.rawValue.uppercased()) \(url.absoluteString) headers: \(String(describing: request.allHTTPHeaderFields))")
     }

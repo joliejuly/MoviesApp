@@ -3,6 +3,8 @@ public struct TMDBApiClient: MovieAPIClient {
     private let baseURL: URL
     private let api: APIClient
     
+    private var imageConfig: ImageConfigurationDTO?
+    
     private var language: String {
         Locale.autoupdatingCurrent.identifier
     }
@@ -42,5 +44,3 @@ public struct TMDBApiClient: MovieAPIClient {
         return try await api.send(endpoint, type: MovieDetailDTO.self, baseURL: baseURL)
     }
 }
-
-

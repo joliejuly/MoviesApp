@@ -13,6 +13,7 @@
 		F7FA8B512DE227430044EA73 /* Dependencies in Frameworks */ = {isa = PBXBuildFile; productRef = F7FA8B502DE227430044EA73 /* Dependencies */; };
 		F7FA8B532DE227430044EA73 /* DependenciesMacros in Frameworks */ = {isa = PBXBuildFile; productRef = F7FA8B522DE227430044EA73 /* DependenciesMacros */; };
 		F7FA8B552DE227430044EA73 /* DependenciesTestSupport in Frameworks */ = {isa = PBXBuildFile; productRef = F7FA8B542DE227430044EA73 /* DependenciesTestSupport */; };
+		F7FA8B652DE45F890044EA73 /* Collections in Frameworks */ = {isa = PBXBuildFile; productRef = F7FA8B642DE45F890044EA73 /* Collections */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -165,6 +166,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F7FA8B652DE45F890044EA73 /* Collections in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -307,6 +309,7 @@
 			);
 			name = MVNetwork;
 			packageProductDependencies = (
+				F7FA8B642DE45F890044EA73 /* Collections */,
 			);
 			productName = MVNetwork;
 			productReference = F7FA8A322DE085400044EA73 /* MVNetwork.framework */;
@@ -377,6 +380,7 @@
 			minimizedProjectReferenceProxies = 1;
 			packageReferences = (
 				F7FA8B4F2DE227430044EA73 /* XCRemoteSwiftPackageReference "swift-dependencies" */,
+				F7FA8B632DE45F890044EA73 /* XCRemoteSwiftPackageReference "swift-collections" */,
 			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = F7B193222DE07214004F7C8D /* Products */;
@@ -940,6 +944,14 @@
 				minimumVersion = 1.9.2;
 			};
 		};
+		F7FA8B632DE45F890044EA73 /* XCRemoteSwiftPackageReference "swift-collections" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/apple/swift-collections";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.2.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -957,6 +969,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = F7FA8B4F2DE227430044EA73 /* XCRemoteSwiftPackageReference "swift-dependencies" */;
 			productName = DependenciesTestSupport;
+		};
+		F7FA8B642DE45F890044EA73 /* Collections */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = F7FA8B632DE45F890044EA73 /* XCRemoteSwiftPackageReference "swift-collections" */;
+			productName = Collections;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
