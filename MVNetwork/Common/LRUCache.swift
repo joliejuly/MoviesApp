@@ -4,14 +4,8 @@ public actor LRUCache<Key: Hashable, Value> {
     private var storage: OrderedDictionary<Key, Value> = [:]
     private let capacity: Int
     
-    public init(capacity: Int? = nil) {
-        if let capacity = capacity {
-            self.capacity = capacity
-        } else {
-            let physicalMemory = ProcessInfo.processInfo.physicalMemory
-            let capacity = physicalMemory / 10
-            self.capacity = Int(capacity)
-        }
+    public init(capacity: Int) {
+        self.capacity = capacity
     }
     
     public func value(forKey key: Key) -> Value? {

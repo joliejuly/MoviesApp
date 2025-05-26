@@ -19,10 +19,13 @@ final class MovieListViewModel: ObservableObject {
         
         do {
             try await paginator.loadNextPage()
-            movies = await paginator.items
+            let newOnes = await paginator.items
+            let unseen = newOnes.filter { new in
+                !movies.contains(where: { $0.id == new.id })
+            }
+            movies.append(contentsOf: unseen)
         } catch {
             // not showing error here due to infinite scroll
         }
     }
 }
-

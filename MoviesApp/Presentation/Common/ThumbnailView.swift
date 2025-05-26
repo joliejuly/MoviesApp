@@ -1,0 +1,23 @@
+import SwiftUI
+
+struct ThumbnailView: View {
+    
+    @Binding var image: Image?
+    
+    let aspectRatio: CGFloat = 82/120
+    let cornerRadius: CGFloat = 8
+    
+    var body: some View {
+        ZStack {
+            RoundedRectangle(cornerRadius: cornerRadius)
+                .fill(Color.gray)
+            
+            image?
+                .resizable()
+                .scaledToFill()
+                .clipShape(RoundedRectangle(cornerRadius: cornerRadius))
+        }
+        .aspectRatio(aspectRatio, contentMode: .fit)
+    }
+}
+

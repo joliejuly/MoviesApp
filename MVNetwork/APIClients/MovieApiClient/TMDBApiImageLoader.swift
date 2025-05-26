@@ -7,7 +7,7 @@ public actor TMDBApiImageLoader: ImageLoader {
     
     private var loadImageTasks: [String: Task<Data, Error>] = [:]
     
-    private let thumbnailCache = LRUCache<String, Data>(capacity: 80)
+    private let thumbnailCache = LRUCache<String, Data>(capacity: 100)
     private let detailImageCache = LRUCache<String, Data>(capacity: 15)
     
     private var language: String {

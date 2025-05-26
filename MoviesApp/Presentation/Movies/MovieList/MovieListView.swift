@@ -20,11 +20,10 @@ struct MovieListView: View {
             .navigationDestination(for: Movie.self) { movie in
                 MovieDetailView(movie: movie)
             }
-            .navigationTitle("Recent movies")
+            .navigationTitle("New movies")
             .task {
                 try? await viewModel.loadMoreIfNeeded()
             }
         }
-
     }
 }

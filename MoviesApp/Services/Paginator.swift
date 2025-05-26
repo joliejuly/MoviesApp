@@ -34,6 +34,5 @@ actor Paginator<Item> {
         currentTask = task
         
         try await task.value
-        
     }
 }
