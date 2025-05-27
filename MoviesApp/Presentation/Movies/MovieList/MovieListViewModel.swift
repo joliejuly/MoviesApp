@@ -7,7 +7,7 @@ final class MovieListViewModel: ObservableObject {
     @Dependency(\.movieService) private var movieService
     @Published private(set) var movies: [Movie] = []
     @Published private(set) var filteredMovies: [Movie] = []
-    @Published var suggestions: [String] = []
+    @Published private(set) var suggestions: [String] = []
     
     private var searchTask: Task<[Movie], Error>?
     
@@ -34,9 +34,9 @@ final class MovieListViewModel: ObservableObject {
     }
     
     func updateSuggestions(for query: String) async {
-        try? await debounce()
         guard !query.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty else {
             suggestions = []
+            filteredMovies = []
             return
         }
         let results = try? await loadSearchResults(query: query, shouldUpdate: false)
@@ -45,12 +45,12 @@ final class MovieListViewModel: ObservableObject {
     }
     
     func loadSearchResults(query: String, shouldUpdate: Bool = true) async throws -> [Movie] {
-        try await debounce()
+        filteredMovies = []
         let task = Task<[Movie], Error> {
+            try await debounce()
             let movies = try await movieService.searchMovies(query: query)
             if shouldUpdate {
                 filteredMovies = movies
-                suggestions = []
             }
             searchTask = nil
             return movies

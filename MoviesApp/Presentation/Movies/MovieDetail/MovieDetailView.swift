@@ -12,6 +12,8 @@ struct MovieDetailView: View {
             VStack(alignment: .leading, spacing: 12) {
                 image
                 details
+                    .frame(maxWidth: .infinity, alignment: .leading)
+                    .padding(.horizontal)
                 Spacer()
             }
             .task(id: movie?.id) {
@@ -31,7 +33,7 @@ struct MovieDetailView: View {
     private var details: some View {
         if let movie {
             Text("Original title: \(movie.originalTitle)")
-                .font(.caption)
+                .font(.body)
         }
         if let detail = viewModel.movieDetailInfo?.movieDetail {
             if let genres = detail.genres {
