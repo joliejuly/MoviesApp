@@ -11,24 +11,9 @@ struct MovieDetailView: View {
         ScrollView(showsIndicators: false) {
             VStack(alignment: .leading, spacing: 12) {
                 image
-                if let movie {
-                    Text("Original title: \(movie.originalTitle)")
-                        .font(.caption)
-                }
-                if let detail = viewModel.movieDetailInfo?.movieDetail {
-                    Text("Genres: \(detail.genres.map(\.name).joined(separator: ", "))")
-                        .font(.body)
-                    Text("Budget: \(detail.budget)")
-                        .font(.body)
-                    Text(detail.overview)
-                        .font(.body)
-                } else {
-                    ProgressView()
-                }
-                
+                details
                 Spacer()
             }
-            .padding(.horizontal, 24)
             .task(id: movie?.id) {
                 try? await viewModel.loadDetails(for: movie)
                 if let loadedImage = viewModel.movieDetailInfo?.movieImage {
@@ -36,8 +21,37 @@ struct MovieDetailView: View {
                 }
             }
         }
+        .scrollBounceBehavior(.basedOnSize)
+        .padding(.horizontal, 24)
         .navigationBarTitleDisplayMode(.inline)
         .navigationTitle(movie?.title ?? "Movie Detail")
+    }
+    
+    @ViewBuilder
+    private var details: some View {
+        if let movie {
+            Text("Original title: \(movie.originalTitle)")
+                .font(.caption)
+        }
+        if let detail = viewModel.movieDetailInfo?.movieDetail {
+            if let genres = detail.genres {
+                Text("Genres: \(genres)")
+                    .font(.body)
+            }
+            if let budget = detail.budget {
+                Text("Budget: \(budget)")
+                    .font(.body)
+            }
+            if let overview = detail.overview {
+                Text("Overview:")
+                    .multilineTextAlignment(.leading)
+                    .font(.body.bold())
+                Text(overview)
+                    .font(.body)
+            }
+        } else {
+            ProgressView()
+        }
     }
     
     private var image: some View {

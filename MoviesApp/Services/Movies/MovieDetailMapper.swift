@@ -1,44 +1,17 @@
+import Foundation
 import struct MVNetwork.MovieDetailDTO
 
 struct MovieDetailMapper {
     static func map(_ dto: MovieDetailDTO) -> MovieDetail {
-        MovieDetail(
+        let genres = dto.genres.map(\.name).joined(separator: ", ")
+        let budget = dto.budget > 0 ? dto.budget : nil
+        return MovieDetail(
             id: dto.id,
-            title: dto.title,
-            budget: dto.budget,
-            genres: dto.genres.map { Genre(id: $0.id, name: $0.name) },
-            homepage: dto.homepage,
-            imdbID: dto.imdbID,
-            originCountry: dto.originCountry,
-            originalLanguage: dto.originalLanguage,
-            originalTitle: dto.originalTitle,
-            overview: dto.overview,
-            popularity: dto.popularity,
-            posterPath: dto.posterPath,
-            productionCompanies: dto.productionCompanies.map {
-                ProductionCompany(
-                    id: $0.id,
-                    logoPath: $0.logoPath,
-                    name: $0.name,
-                    originCountry: $0.originCountry
-                )
-            },
-            productionCountries: dto.productionCountries.map {
-                ProductionCountry(
-                    name: $0.name
-                )
-            },
-            releaseDate: dto.releaseDate,
-            revenue: dto.revenue,
-            runtime: dto.runtime,
-            spokenLanguages: dto.spokenLanguages.map {
-                SpokenLanguage(
-                    englishName: $0.englishName,
-                    name: $0.name
-                )
-            },
-            status: dto.status,
-            tagline: dto.tagline
+            title: dto.title.capitalized(with: Locale.autoupdatingCurrent),
+            budget: budget,
+            genres: genres.isEmpty ? nil : genres,
+            originalTitle: dto.originalTitle.capitalized(with: Locale.autoupdatingCurrent),
+            overview: dto.overview.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty ? nil : dto.overview
         )
     }
 }
