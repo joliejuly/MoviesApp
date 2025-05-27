@@ -74,7 +74,6 @@ final class APIClientTests: XCTestCase {
     }
     
     func testSendDecodable_DecodingErrorThrowsAPIErrorDecoding() async {
-        // Given: valid HTTP 200 but invalid JSON for DummyResponse
         let invalidJSON = #"{"identifier":1,"title":"Error"}"#.data(using: .utf8)!
         MockURLProtocol.stubData = invalidJSON
         MockURLProtocol.stubResponse = HTTPURLResponse(
