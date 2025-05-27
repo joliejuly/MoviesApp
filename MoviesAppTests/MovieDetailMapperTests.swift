@@ -6,7 +6,6 @@ import XCTest
 final class MovieDetailMapperTests: XCTestCase {
     func test_map_fromDTO_returnsExpectedMovieDetail() {
         
-        // Given
         let dto = MovieDetailDTO(
             id: 1,
             title: "Test Title",
@@ -44,10 +43,8 @@ final class MovieDetailMapperTests: XCTestCase {
             tagline: "This is a test."
         )
         
-        // When
         let model = MovieDetailMapper.map(dto)
         
-        // Then
         XCTAssertEqual(model.id, dto.id)
         XCTAssertEqual(model.title, dto.title)
         XCTAssertEqual(model.genres.count, 1)

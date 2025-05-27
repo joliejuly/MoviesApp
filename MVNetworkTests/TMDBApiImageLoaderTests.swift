@@ -1,56 +1,14 @@
 import XCTest
 @testable import MVNetwork
 
-private enum TestError: Error, Equatable {
-    case noStub, fetchFailed, configFailed
-}
-
-final class MockImageLoader: APIClientProtocol {
-
-    var configResult: Result<ConfigurationDTO, Error> = .failure(TestError.noStub)
-    var fetchDataResult: Result<Data, Error> = .failure(TestError.noStub)
-    
-    var sendCount = 0
-    var fetchDataCount = 0
-    
-    func send<T>(
-        _ endpoint: Endpoint,
-        type: T.Type,
-        baseURL: URL
-    ) async throws -> T where T : Decodable {
-        sendCount += 1
-        switch configResult {
-            case .success(let configDTO) where T.self == ConfigurationDTO.self:
-                return configDTO as! T
-            case .failure(let err):
-                throw err
-            default:
-                fatalError("Unexpected type \(T.self) for configResult stub")
-        }
-    }
-    
-    func fetchData(
-        _ endpoint: Endpoint,
-        baseURL: URL
-    ) async throws -> Data {
-        fetchDataCount += 1
-        switch fetchDataResult {
-            case .success(let data):
-                return data
-            case .failure(let err):
-                throw err
-        }
-    }
-}
-
 final class TMDBApiImageLoaderTests: XCTestCase {
-    var apiClient: MockImageLoader!
+    var apiClient: MockAPIClient!
     var loader: TMDBApiImageLoader!
     let baseURL = URL(string: "https://example.com")!
     
     override func setUp() {
         super.setUp()
-        apiClient = MockImageLoader()
+        apiClient = MockAPIClient()
         loader = TMDBApiImageLoader(api: apiClient, baseURL: baseURL)
     }
     
@@ -69,7 +27,7 @@ final class TMDBApiImageLoaderTests: XCTestCase {
                 posterSizes: posterSizes
             )
         )
-        apiClient.configResult = .success(configDTO)
+        apiClient.sendResult = .success(configDTO)
         
         let expectedData = "fakeImageData".data(using: .utf8)!
         apiClient.fetchDataResult = .success(expectedData)
@@ -83,7 +41,7 @@ final class TMDBApiImageLoaderTests: XCTestCase {
     
     func testFetchImage_WhenConfigFails_ThrowsError() async {
         
-        apiClient.configResult = .failure(TestError.configFailed)
+        apiClient.sendResult = .failure(TestError.configFailed)
         
         do {
             _ = try await loader.fetchImage(path: "/poster.jpg", size: .small)
@@ -97,7 +55,7 @@ final class TMDBApiImageLoaderTests: XCTestCase {
     
     func testFetchImage_WhenFetchDataFails_ThrowsError() async {
         let posterSizes = ["thumb"]
-        apiClient.configResult = .success(
+        apiClient.sendResult = .success(
             ConfigurationDTO(
                 images: ImageConfigurationDTO(
                     secureBaseUrl: "https://imgs/",
