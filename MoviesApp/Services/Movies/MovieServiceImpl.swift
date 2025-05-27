@@ -22,4 +22,10 @@ final class MovieServiceImpl: MovieService {
         let movieDetail = MovieDetailMapper.map(dto)
         return movieDetail
     }
+    
+    func searchMovies(query: String) async throws -> [Movie] {
+        let dto = try await api.searchMovies(query: query)
+        let movies = dto.map { MovieMapper.map($0) }
+        return movies
+    }
 }

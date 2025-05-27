@@ -9,6 +9,10 @@ public struct TMDBApiClient: MovieAPIClient {
         Locale.autoupdatingCurrent.identifier
     }
     
+    private var shortLanguageCode: String {
+        String(language.split(separator: "-").first ?? "en")
+    }
+
     public init(api: APIClientProtocol, baseURL: URL = Constants.baseURL) {
         self.api = api
         self.baseURL = baseURL
@@ -17,7 +21,6 @@ public struct TMDBApiClient: MovieAPIClient {
     public func fetchLatestMovies(page: Int) async throws -> PaginatedResponseDTO<MovieDTO> {
         
         let date = yyyyMMddDateFormatter.string(from: Date())
-        let shortLanguageCode = language.split(separator: "-").first ?? "en"
         
         let endpoint = Endpoint(
             path: "discover/movie",
@@ -42,5 +45,23 @@ public struct TMDBApiClient: MovieAPIClient {
             ]
         )
         return try await api.send(endpoint, type: MovieDetailDTO.self, baseURL: baseURL)
+    }
+    
+    public func searchMovies(query: String) async throws -> [MovieDTO] {
+        let endpoint = Endpoint(
+            path: "search/movie",
+            queryItems: [
+                URLQueryItem(name: "query", value: query),
+                URLQueryItem(name: "include_adult", value: "false"),
+                URLQueryItem(name: "sort_by", value: "release_date.desc"),
+                URLQueryItem(name: "append_to_response", value: "images"),
+                URLQueryItem(name: "language", value: language),
+                URLQueryItem(name: "include_image_language", value: "\(shortLanguageCode),null")
+            ]
+        )
+        
+        let result = try await api.send(endpoint, type: PaginatedResponseDTO<MovieDTO>.self, baseURL: baseURL)
+        
+        return result.results
     }
 }

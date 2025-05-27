@@ -6,10 +6,11 @@ struct MovieListView: View {
     
     @State private var path: [Movie] = []
     @State private var selectedMovie: Movie?
+    @State private var searchText = ""
     
     var body: some View {
         NavigationStack(path: $path) {
-            List(viewModel.movies) { movie in
+            List(filteredMovies) { movie in
                 NavigationLink(value: movie) {
                     MovieCell(movie: movie)
                         .task(id: movie.id) {
@@ -17,6 +18,7 @@ struct MovieListView: View {
                         }
                 }
             }
+            .listStyle(.plain)
             .navigationDestination(for: Movie.self) { movie in
                 MovieDetailView(movie: movie)
             }
@@ -24,6 +26,16 @@ struct MovieListView: View {
             .task {
                 try? await viewModel.loadMoreIfNeeded()
             }
+            .searchable(text: $searchText)
+            .onChange(of: searchText) { _, newValue in
+                Task {
+                    try? await viewModel.loadSearchResults(query: newValue)
+                }
+            }
         }
+    }
+    
+    private var filteredMovies: [Movie] {
+        searchText.isEmpty ? viewModel.movies : viewModel.filteredMovies
     }
 }
