@@ -27,9 +27,16 @@ struct MovieListView: View {
                 try? await viewModel.loadMoreIfNeeded()
             }
             .searchable(text: $searchText) {
-                ForEach(viewModel.suggestions, id: \.self) { suggestion in
-                    Text(suggestion)
-                        .searchCompletion(suggestion)
+                ForEach(viewModel.suggestions.indices, id: \.self) { index in
+                    let suggestion = viewModel.suggestions[index]
+                    Button {
+                        Task {
+                            try await viewModel.loadSearchResults(query: suggestion)
+                        }
+                    } label: {
+                        Text(suggestion)
+                    }
+                    .searchCompletion(suggestion)
                 }
             }
             .onSubmit(of: .search) {
@@ -40,7 +47,6 @@ struct MovieListView: View {
             .onChange(of: searchText) { _, newValue in
                 Task {
                     await viewModel.updateSuggestions(for: newValue)
-                    let _ = try? await viewModel.loadSearchResults(query: newValue)
                 }
             }
         }

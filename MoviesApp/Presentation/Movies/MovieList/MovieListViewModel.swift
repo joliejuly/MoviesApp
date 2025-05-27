@@ -34,9 +34,9 @@ final class MovieListViewModel: ObservableObject {
     }
     
     func updateSuggestions(for query: String) async {
-        guard !query.isEmpty else {
+        try? await debounce()
+        guard !query.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty else {
             suggestions = []
-            filteredMovies = []
             return
         }
         let results = try? await loadSearchResults(query: query, shouldUpdate: false)
@@ -46,11 +46,11 @@ final class MovieListViewModel: ObservableObject {
     
     func loadSearchResults(query: String, shouldUpdate: Bool = true) async throws -> [Movie] {
         try await debounce()
-        searchTask?.cancel()
-        let task = Task<[Movie], Error>{
+        let task = Task<[Movie], Error> {
             let movies = try await movieService.searchMovies(query: query)
             if shouldUpdate {
                 filteredMovies = movies
+                suggestions = []
             }
             searchTask = nil
             return movies
