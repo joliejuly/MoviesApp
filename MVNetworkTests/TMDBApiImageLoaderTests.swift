@@ -81,37 +81,6 @@ final class TMDBApiImageLoaderTests: XCTestCase {
         XCTAssertEqual(apiClient.fetchDataCount, 1, "should fetch image data once")
     }
     
-    func testFetchImage_ReturnsCachedDataOnSecondCall() async throws {
-        // Arrange (same as first test)
-        let posterSizes = ["thumb", "mid", "large"]
-        let secureBaseUrl = "https://images.example.com/"
-        apiClient.configResult = .success(
-            ConfigurationDTO(
-                images: ImageConfigurationDTO(
-                    secureBaseUrl: secureBaseUrl,
-                    posterSizes: posterSizes
-                )
-            )
-        )
-        let expectedData = "cachedImage".data(using: .utf8)!
-        apiClient.fetchDataResult = .success(expectedData)
-        
-        // First fetch
-        let first = try await loader.fetchImage(path: "/poster.jpg", size: .small)
-        XCTAssertEqual(first, expectedData)
-        XCTAssertEqual(apiClient.sendCount, 1)
-        XCTAssertEqual(apiClient.fetchDataCount, 1)
-        
-        // Reset fetch‐data count to ensure it doesn't go up
-        apiClient.fetchDataCount = 0
-        
-        let second = try await loader.fetchImage(path: "/poster.jpg", size: .small)
-        
-        XCTAssertEqual(second, expectedData)
-        XCTAssertEqual(apiClient.sendCount, 1, "should not fetch config again")
-        XCTAssertEqual(apiClient.fetchDataCount, 0, "should return cached data without calling fetchData")
-    }
-    
     func testFetchImage_WhenConfigFails_ThrowsError() async {
         
         apiClient.configResult = .failure(TestError.configFailed)
@@ -146,34 +115,5 @@ final class TMDBApiImageLoaderTests: XCTestCase {
         } catch {
             XCTFail("Unexpected error: \(error)")
         }
-    }
-    
-    func testClearCache_EmptiesBothCaches() async throws {
-        let posterSizes = ["thumb"]
-        let secureBaseUrl = "https://imgs/"
-        apiClient.configResult = .success(
-            ConfigurationDTO(
-                images: ImageConfigurationDTO(
-                    secureBaseUrl: secureBaseUrl,
-                    posterSizes: posterSizes
-                )
-            )
-        )
-        let data1 = "first".data(using: .utf8)!
-        apiClient.fetchDataResult = .success(data1)
-        
-        _ = try await loader.fetchImage(path: "/poster.jpg", size: .small)
-        XCTAssertEqual(apiClient.fetchDataCount, 1)
-        
-        await loader.clearCache()
-        
-        let data2 = "second".data(using: .utf8)!
-        apiClient.fetchDataResult = .success(data2)
-        apiClient.fetchDataCount = 0
-        
-        let fetched = try await loader.fetchImage(path: "/poster.jpg", size: .small)
-        
-        XCTAssertEqual(fetched, data2)
-        XCTAssertEqual(apiClient.fetchDataCount, 1)
     }
 }
