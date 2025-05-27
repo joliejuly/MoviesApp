@@ -7,8 +7,9 @@ final class MovieListViewModel: ObservableObject {
     @Dependency(\.movieService) private var movieService
     @Published private(set) var movies: [Movie] = []
     @Published private(set) var filteredMovies: [Movie] = []
+    @Published var suggestions: [String] = []
     
-    private var searchTask: Task<Void, Error>?
+    private var searchTask: Task<[Movie], Error>?
     
     private lazy var paginator: Paginator<Movie> = {
         Paginator(loadPage: movieService.fetchLatest)
@@ -32,12 +33,33 @@ final class MovieListViewModel: ObservableObject {
         }
     }
     
-    func loadSearchResults(query: String) async throws {
-        searchTask?.cancel()
-        searchTask = Task {
-            // debounce
-            try await Task.sleep(nanoseconds: 500_000_000)
-            filteredMovies = try await movieService.searchMovies(query: query)
+    func updateSuggestions(for query: String) async {
+        guard !query.isEmpty else {
+            suggestions = []
+            filteredMovies = []
+            return
         }
+        let results = try? await loadSearchResults(query: query, shouldUpdate: false)
+        let titles  = results?.compactMap(\.title) ?? []
+        suggestions = titles
+    }
+    
+    func loadSearchResults(query: String, shouldUpdate: Bool = true) async throws -> [Movie] {
+        try await debounce()
+        searchTask?.cancel()
+        let task = Task<[Movie], Error>{
+            let movies = try await movieService.searchMovies(query: query)
+            if shouldUpdate {
+                filteredMovies = movies
+            }
+            searchTask = nil
+            return movies
+        }
+        searchTask = task
+        return try await task.value
+    }
+    
+    private func debounce() async throws {
+        try await Task.sleep(nanoseconds: 500_000_000)
     }
 }
