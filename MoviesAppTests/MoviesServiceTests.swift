@@ -68,4 +68,9 @@ final class StubAPI: MovieAPIClient {
         if shouldThrowDetail { throw URLError(.badServerResponse) }
         return detailStub
     }
+    
+    func searchMovies(query: String) async throws -> [MVNetwork.MovieDTO] {
+      return []
+    }
+    
 }

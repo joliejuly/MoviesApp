@@ -5,6 +5,7 @@ struct MovieDetailView: View {
     let movie: Movie?
     
     @StateObject private var viewModel = MovieDetailViewModel()
+    @State private var detailImage: Image?
     
     var body: some View {
         ScrollView(showsIndicators: false) {
@@ -27,10 +28,12 @@ struct MovieDetailView: View {
                 
                 Spacer()
             }
-            .frame(maxWidth: .infinity, alignment: .leading)
             .padding(.horizontal, 24)
             .task(id: movie?.id) {
                 try? await viewModel.loadDetails(for: movie)
+                if let loadedImage = viewModel.movieDetailInfo?.movieImage {
+                    detailImage = loadedImage
+                }
             }
         }
         .navigationBarTitleDisplayMode(.inline)
@@ -38,16 +41,9 @@ struct MovieDetailView: View {
     }
     
     private var image: some View {
-        ZStack {
-            RoundedRectangle(cornerRadius: 8)
-                .fill(Color.gray)
-            if let image = viewModel.movieDetailInfo?.movieImage {
-                image
-                .resizable()
-                .aspectRatio(contentMode: .fit)
-                .clipShape(RoundedRectangle(cornerRadius: 8))
-            }
-        }
-        .frame(maxWidth: .infinity)
+        ThumbnailView(image: $detailImage, isLoading: $viewModel.isLoading, showPlaceholder: false)
+            .frame(maxWidth: .infinity, alignment: .center)
+            .padding()
+            .clipped()
     }
 }

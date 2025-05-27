@@ -7,9 +7,12 @@ final class MovieDetailViewModel: ObservableObject {
     @Dependency(\.movieService) private var movieService
     @Dependency(\.movieImageLoader) private var movieImageLoader
 
-    @Published private(set) var movieDetailInfo: MovieDetailInfo? = nil
+    @Published var movieDetailInfo: MovieDetailInfo? = nil
+    @Published var isLoading = false
     
     func loadDetails(for movie: Movie?) async throws {
+        isLoading = true
+        defer { isLoading = false }
         guard let movie else { return }
         async let detail = try await movieService.fetchDetails(id: movie.id)
         async let image: Image? = {

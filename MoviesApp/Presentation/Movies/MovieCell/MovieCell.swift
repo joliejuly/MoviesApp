@@ -24,7 +24,7 @@ struct MovieCell: View {
     }
     
     private var thumbnail: some View {
-        ThumbnailView(image: $viewModel.image)
+        ThumbnailView(image: $viewModel.image, isLoading: $viewModel.isLoading, showPlaceholder: true)
             .frame(width: 82)
     }
 }

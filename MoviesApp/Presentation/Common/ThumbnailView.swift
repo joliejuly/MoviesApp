@@ -3,14 +3,23 @@ import SwiftUI
 struct ThumbnailView: View {
     
     @Binding var image: Image?
+    @Binding var isLoading: Bool
     
+    let showPlaceholder: Bool
     let aspectRatio: CGFloat = 82/120
     let cornerRadius: CGFloat = 8
     
     var body: some View {
         ZStack {
-            RoundedRectangle(cornerRadius: cornerRadius)
-                .fill(Color.gray)
+            if showPlaceholder, image == nil {
+                RoundedRectangle(cornerRadius: cornerRadius)
+                    .fill(Color.gray)
+                Image(systemName: "photo")
+                    .resizable()
+                    .scaledToFit()
+                    .foregroundColor(.white)
+                    .padding(20)
+            }
             
             image?
                 .resizable()
@@ -20,4 +29,3 @@ struct ThumbnailView: View {
         .aspectRatio(aspectRatio, contentMode: .fit)
     }
 }
-
