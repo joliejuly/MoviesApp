@@ -28,4 +28,3 @@ struct MovieCell: View {
             .frame(width: 82)
     }
 }
-

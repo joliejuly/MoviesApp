@@ -4,7 +4,6 @@ import Dependencies
 @MainActor
 final class MovieCellViewModel: ObservableObject {
     
-    @Dependency(\.movieService) private var movieService
     @Dependency(\.movieImageLoader) private var movieImageLoader
     
     @Published var image: Image? = nil

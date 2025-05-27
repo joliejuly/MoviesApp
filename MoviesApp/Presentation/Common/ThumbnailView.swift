@@ -27,5 +27,8 @@ struct ThumbnailView: View {
                 .clipShape(RoundedRectangle(cornerRadius: cornerRadius))
         }
         .aspectRatio(aspectRatio, contentMode: .fit)
+        .onDisappear {
+            image = nil
+        }
     }
 }

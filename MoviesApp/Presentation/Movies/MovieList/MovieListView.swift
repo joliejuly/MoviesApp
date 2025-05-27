@@ -17,8 +17,8 @@ struct MovieListView: View {
                             try? await viewModel.loadMoreIfNeeded(currentItem: movie)
                         }
                 }
+                .listStyle(.plain)
             }
-            .listStyle(.plain)
             .navigationDestination(for: Movie.self) { movie in
                 MovieDetailView(movie: movie)
             }
