@@ -27,6 +27,11 @@ extension DependencyValues {
         get { self[MovieImageLoaderKey.self] }
         set { self[MovieImageLoaderKey.self] = newValue }
     }
+    
+    var imageLoader: ImageLoader {
+        get { self[ImageLoaderKey.self] }
+        set { self[ImageLoaderKey.self] = newValue }
+    }
 }
 
 // MARK: – Keys
@@ -41,6 +46,9 @@ private enum APIClientKey: DependencyKey {
     static let liveValue: APIClientProtocol = APIClient(
         headerProvider: HeaderProviderKey.liveValue
     )
+    
+    // test value will be replaced in tests
+    static var testValue: APIClientProtocol = liveValue
 }
 
 private enum TMDBApiClientKey: DependencyKey {
@@ -50,9 +58,7 @@ private enum TMDBApiClientKey: DependencyKey {
 }
 
 private enum MovieServiceKey: DependencyKey {
-    static let liveValue: MovieService = MovieServiceImpl(
-        apiClient: TMDBApiClientKey.liveValue
-    )
+    static let liveValue: MovieService = MovieServiceImpl()
 }
 
 private enum ImageLoaderKey: DependencyKey {
@@ -62,7 +68,5 @@ private enum ImageLoaderKey: DependencyKey {
 }
 
 private enum MovieImageLoaderKey: DependencyKey {
-    static let liveValue: MovieImageLoader = MovieImageLoaderImpl(
-        apiClient: ImageLoaderKey.liveValue
-    )
+    static let liveValue: MovieImageLoader = MovieImageLoaderImpl()
 }

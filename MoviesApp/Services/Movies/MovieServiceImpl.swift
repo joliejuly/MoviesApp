@@ -1,11 +1,9 @@
 import MVNetwork
+import Dependencies
 
 final class MovieServiceImpl: MovieService {
-    private let api: MovieAPIClient
-    
-    init(apiClient: MovieAPIClient) {
-        self.api = apiClient
-    }
+   
+    @Dependency(\.movieAPIClient) private var api
     
     func fetchLatest(page: Int) async throws -> Page<Movie> {
         let dtoPage = try await api.fetchLatestMovies(page: page)

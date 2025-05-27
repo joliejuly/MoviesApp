@@ -1,6 +1,7 @@
 import XCTest
 @testable import MoviesApp
 @testable import MVNetwork
+import Dependencies
 
 final class MovieServiceImplTests: XCTestCase {
     var api: StubAPI!
@@ -9,7 +10,12 @@ final class MovieServiceImplTests: XCTestCase {
     override func setUp() {
         super.setUp()
         api = StubAPI()
-        service = MovieServiceImpl(apiClient: api)
+        
+        service = withDependencies {
+            $0.movieAPIClient = api
+        } operation: {
+            MovieServiceImpl()
+        }
     }
     
     override func tearDown() {

@@ -1,14 +1,11 @@
 import MVNetwork
-import UIKit
+import Dependencies
 import struct SwiftUI.Image
+import class UIKit.UIImage
 
 final class MovieImageLoaderImpl: MovieImageLoader {
     
-    private let api: ImageLoader
-    
-    init(apiClient: ImageLoader) {
-        self.api = apiClient
-    }
+    @Dependency(\.imageLoader) private var api
     
     func fetchThumbnail(path: String) async throws -> Image? {
         let data = try await api.fetchImage(path: path, size: .small)

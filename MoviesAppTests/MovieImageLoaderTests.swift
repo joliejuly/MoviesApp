@@ -2,6 +2,7 @@ import XCTest
 import SwiftUI
 @testable import MoviesApp
 import MVNetwork
+import Dependencies
 
 final class MovieImageLoaderImplTests: XCTestCase {
     var api: MockImageLoader!
@@ -10,7 +11,11 @@ final class MovieImageLoaderImplTests: XCTestCase {
     override func setUp() {
         super.setUp()
         api = MockImageLoader()
-        loader = MovieImageLoaderImpl(apiClient: api)
+        loader = withDependencies {
+            $0.imageLoader = api
+        } operation: {
+            MovieImageLoaderImpl()
+        }
     }
     
     override func tearDown() {
@@ -58,6 +63,7 @@ final class MovieImageLoaderImplTests: XCTestCase {
         XCTAssertTrue(api.clearCalled)
     }
 }
+
 
 final class MockImageLoader: ImageLoader {
     var fetchCalls: [(path: String, size: ImageSize)] = []
