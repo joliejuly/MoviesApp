@@ -99,7 +99,6 @@ final class APIClientTests: XCTestCase {
     }
     
     func testFetchData_ReturnsRawData() async throws {
-        // Given
         let expected = "raw data".data(using: .utf8)!
         MockURLProtocol.stubData = expected
         MockURLProtocol.stubResponse = HTTPURLResponse(

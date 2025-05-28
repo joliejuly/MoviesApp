@@ -38,17 +38,17 @@ public final class APIClient: APIClientProtocol {
         logger.debug("📡 → \(endpoint.method.rawValue) \(url.absoluteString)")
         
         do {
-            // 3. Perform
+            
             let (data, response) = try await session.data(for: request)
             
-            // 4. Check HTTP status
+            
             if let http = response as? HTTPURLResponse,
                !(200...299).contains(http.statusCode) {
                 logger.error("🚫 HTTP \(http.statusCode) for \(url.absoluteString)")
                 throw APIError.http(statusCode: http.statusCode, data: data)
             }
             
-            // 5. Decode
+            
             let value = try decoder.decode(T.self, from: data)
             logger.debug("✅ ← decoded \(T.self) from \(url.absoluteString)")
             return value
