@@ -8,24 +8,14 @@ This app fetches and displays movie data from [The Movie Database (TMDb)](https:
 
 ## 🚀 Getting Started
 
-To run the app on your machine:
+To run the app on your machine after cloning the repo ```git@github.com:joliejuly/MoviesApp_Neugelb.git```:
 
-1. **Clone the repository:**
-
-   ```bash
-   git clone https://github.com/your-username/MoviesApp.git
-   cd MoviesApp
-
-2.	**Install dependencies**:
-
-This project uses Swift Package Manager for Swift-Dependencies and Swift-Collections – just open the project in Xcode and it should fetch everything automatically.
-
-4.	**Create your Access Token**:
+1.	**Create your Access Token**:
 You’ll need a TMDb access token to fetch movie data. You can get one for free by creating an account at TMDb and generating a personal API token.
 
-6.	**Create your Secrets.xcconfig file**:
+2.	**Create your Secrets.xcconfig file**:
 
-In the root of your project (or alongside your existing .xcconfig files), create a file called ```Secrets.xcconfig```. You can copy ```SecretsExample.xcconfig``` that is commited to the repo.
+In the root of the project (alongside SecretsExample.xcconfig), create a file called ```Secrets.xcconfig```. You can copy ```SecretsExample.xcconfig``` that is commited to the repo.
 Make sure it contains ```TMDB_ACCESS_TOKEN = <YOUR_TMDB_TOKEN_HERE>``` line.
 
 Alternatively, you can just paste your token in ```Auth -> Bundle+Extension.swift``` file under ```var tmdbAccessToken``` value. 
@@ -52,7 +42,7 @@ Alternatively, you can just paste your token in ```Auth -> Bundle+Extension.swif
 
 ---
 
-## 📱 To be implemented if I had more time: 
+## 📱 To be implemented (if I had more time this week): 
 
   - Coordinator pattern for navigation
   - ViewModel and DTO tests
