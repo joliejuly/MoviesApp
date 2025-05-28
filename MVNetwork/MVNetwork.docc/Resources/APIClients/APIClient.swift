@@ -56,10 +56,10 @@ public final class APIClient: APIClientProtocol {
         } catch let err as APIError {
             throw err
         } catch is DecodingError {
-            logger.error("⚠️ Decoding error for \(T.self): \(err.localizedDescription)")
+            logger.debug("⚠️ Decoding error for \(T.self): \(err.localizedDescription)")
             throw APIError.decoding(err)
         } catch {
-            logger.error("⚠️ Network error: \(err.localizedDescription)")
+            logger.debug("⚠️ Network error: \(err.localizedDescription)")
             throw APIError.network(err)
         }
     }

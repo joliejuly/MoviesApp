@@ -65,7 +65,7 @@ public actor APIClient: APIClientProtocol {
         let (data, response) = try await session.data(for: request)
         guard let http = response as? HTTPURLResponse, (200...299).contains(http.statusCode) else {
             let code = (response as? HTTPURLResponse)?.statusCode ?? -1
-            logger.error("🚫 HTTP \(code) for \(url)")
+            logger.debug("🚫 HTTP \(code) for \(url)")
             throw APIError.http(statusCode: code, data: data)
         }
         return data
@@ -90,7 +90,7 @@ public actor APIClient: APIClientProtocol {
             
             guard (200...299).contains(httpResponse.statusCode) else {
                 
-                logger.error("🚫 HTTP \(httpResponse.statusCode) for \(url)")
+                logger.debug("🚫 HTTP \(httpResponse.statusCode) for \(url)")
                 
                 throw APIError.http(
                     statusCode: httpResponse.statusCode,
@@ -104,10 +104,10 @@ public actor APIClient: APIClientProtocol {
         } catch let error as APIError {
             throw error
         } catch let error as DecodingError {
-            logger.error("⚠️ Decoding error for \(Response.self): \(error.localizedDescription)")
+            logger.debug("⚠️ Decoding error for \(Response.self): \(error.localizedDescription)")
             throw APIError.decoding(error)
         } catch {
-            logger.error("⚠️ Network error: \(error.localizedDescription)")
+            logger.debug("⚠️ Network error: \(error.localizedDescription)")
             throw APIError.network(error)
         }
     }
