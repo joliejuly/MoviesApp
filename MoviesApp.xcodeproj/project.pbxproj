@@ -71,7 +71,7 @@
 		F7AFEA8F2DE6FB6D00901373 /* Exceptions for "MoviesApp" folder in "MoviesAppTests" target */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
-				Mocks/MockMovieAPIClient.swift,
+				Services/Mocks/MockMovieAPIClient.swift,
 			);
 			target = F7B193302DE07214004F7C8D /* MoviesAppTests */;
 		};

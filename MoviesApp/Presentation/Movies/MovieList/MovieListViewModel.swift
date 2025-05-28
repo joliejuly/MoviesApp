@@ -9,7 +9,8 @@ final class MovieListViewModel: ObservableObject {
     @Published private(set) var filteredMovies: [Movie] = []
     @Published private(set) var suggestions: [String] = []
     
-    private var searchTask: Task<[Movie], Error>?
+    private var searchTask: Task<Void, Error>?
+    private var suggestionsTask: Task<Void, Never>?
     
     private lazy var paginator: Paginator<Movie> = {
         Paginator(loadPage: movieService.fetchLatest)
@@ -34,29 +35,39 @@ final class MovieListViewModel: ObservableObject {
     }
     
     func updateSuggestions(for query: String) async {
+        guard searchTask == nil else { return }
         guard !query.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty else {
             suggestions = []
             filteredMovies = []
             return
         }
-        let results = try? await loadSearchResults(query: query, shouldUpdate: false)
-        let titles  = results?.compactMap(\.title) ?? []
-        suggestions = titles
+        suggestions = []
+        filteredMovies = []
+        suggestionsTask?.cancel()
+        let task = Task {
+            try? await debounce()
+            let results = try? await movieService.searchMovies(query: query)
+            let titles  = results?.compactMap(\.title) ?? []
+            suggestions = titles
+            suggestionsTask = nil
+        }
+        suggestionsTask = task
+        await task.value
     }
     
-    func loadSearchResults(query: String, shouldUpdate: Bool = true) async throws -> [Movie] {
+    func loadSearchResults(query: String) async throws {
+        suggestions = []
         filteredMovies = []
-        let task = Task<[Movie], Error> {
+        suggestionsTask?.cancel()
+        searchTask?.cancel()
+        let task = Task {
             try await debounce()
             let movies = try await movieService.searchMovies(query: query)
-            if shouldUpdate {
-                filteredMovies = movies
-            }
+            filteredMovies = movies
             searchTask = nil
-            return movies
         }
         searchTask = task
-        return try await task.value
+        try await task.value
     }
     
     private func debounce() async throws {
