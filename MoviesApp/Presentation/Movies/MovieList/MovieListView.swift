@@ -7,6 +7,7 @@ struct MovieListView: View {
     @State private var path: [Movie] = []
     @State private var selectedMovie: Movie?
     @State private var searchText = ""
+    @State private var showError = false
     
     var body: some View {
         NavigationStack(path: $path) {
@@ -19,12 +20,21 @@ struct MovieListView: View {
                 }
                 .listStyle(.plain)
             }
+            .overlay {
+                if showError {
+                  errorView
+                }
+            }
             .navigationDestination(for: Movie.self) { movie in
                 MovieDetailView(movie: movie)
             }
             .navigationTitle("New movies")
             .task {
-                try? await viewModel.loadMoreIfNeeded()
+                do {
+                    try await viewModel.loadMoreIfNeeded()
+                } catch {
+                    showError = true
+                }
             }
             .searchable(text: $searchText) {
                 ForEach(viewModel.suggestions.indices, id: \.self) { index in
@@ -50,6 +60,17 @@ struct MovieListView: View {
                     await viewModel.updateSuggestions(for: newValue)
                 }
             }
+        }
+    }
+    
+    private var errorView: some View {
+        VStack(spacing: 24) {
+            Image(systemName: "exclamationmark.triangle.fill")
+                .font(.largeTitle)
+            Text("Error loading movies.\nProbably api token is missing.")
+                .bold()
+                .multilineTextAlignment(.center)
+                .padding(.horizontal, 24)
         }
     }
     
