@@ -4,26 +4,19 @@ import XCTest
 import Dependencies
 
 final class MovieServiceImplTests: XCTestCase {
-    var api: StubAPI!
-    var service: MovieServiceImpl!
+    var api: MockMovieAPIClient!
+    var service = MovieServiceImpl()
     
-    override func setUp() {
-        super.setUp()
-        api = StubAPI()
-        
-        service = withDependencies {
+    override func invokeTest() {
+        let api = MockMovieAPIClient()
+        self.api = api
+        withDependencies {
             $0.movieAPIClient = api
         } operation: {
-            MovieServiceImpl()
+            super.invokeTest()
         }
     }
-    
-    override func tearDown() {
-        api = nil
-        service = nil
-        super.tearDown()
-    }
-    
+
     func testFetchLatest_ReturnsMappedPage() async throws {
         let dtos = [
             MovieDTO(id: 10, title: "t", originalTitle: "OT", posterPath: "/p")
@@ -53,30 +46,4 @@ final class MovieServiceImplTests: XCTestCase {
             // success
         }
     }
-}
-
-final class StubAPI: MovieAPIClient {
-    var lastPageRequested: Int?
-    var lastDetailID: Int?
-    var latestStub: PaginatedResponseDTO<MovieDTO>!
-    var detailStub: MovieDetailDTO!
-    var shouldThrowLatest = false
-    var shouldThrowDetail = false
-    
-    func fetchLatestMovies(page: Int) async throws -> PaginatedResponseDTO<MovieDTO> {
-        lastPageRequested = page
-        if shouldThrowLatest { throw URLError(.badServerResponse) }
-        return latestStub
-    }
-    
-    func fetchMovieDetail(id: Int) async throws -> MovieDetailDTO {
-        lastDetailID = id
-        if shouldThrowDetail { throw URLError(.badServerResponse) }
-        return detailStub
-    }
-    
-    func searchMovies(query: String) async throws -> [MVNetwork.MovieDTO] {
-      return []
-    }
-    
 }

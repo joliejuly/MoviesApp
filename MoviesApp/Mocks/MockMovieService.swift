@@ -1,0 +1,31 @@
+final class MockMovieService: MovieService {
+    
+    func fetchLatest(page: Int) async throws -> Page<Movie> {
+        return Page(
+            index: 1,
+            items: [
+                Movie(id: 1, title: "Mock Movie 1", originalTitle: "", posterPath: "/mock1.jpg"),
+                Movie(id: 2, title: "Mock Movie 2", originalTitle: "", posterPath: "/mock2.jpg")
+            ],
+            totalPages: 1
+        )
+    }
+    
+    func fetchDetails(id: Int) async throws -> MovieDetail {
+        return MovieDetail(
+            id: id,
+            title: "Mock Movie Detail \(id)",
+            budget: 100000,
+            genres: nil,
+            originalTitle: "Mock Original Title",
+            overview: "This is a mock overview of the movie."
+        )
+    }
+    
+    func searchMovies(query: String) async throws -> [Movie] {
+        return [
+            Movie(id: 1, title: "Mock Movie 1", originalTitle: "", posterPath: "/mock1.jpg"),
+            Movie(id: 2, title: "Mock Movie 2", originalTitle: "", posterPath: "/mock2.jpg")
+        ]
+    }
+}

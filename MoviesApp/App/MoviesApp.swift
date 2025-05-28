@@ -1,4 +1,5 @@
 import SwiftUI
+import IssueReporting
 
 @main
 struct MoviesApp: App {
@@ -7,7 +8,9 @@ struct MoviesApp: App {
     
     var body: some Scene {
         WindowGroup {
-            MovieListView()
+            if !isTesting {
+                MovieListView()
+            }
         }
     }
 }

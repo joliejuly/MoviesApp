@@ -7,13 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		F760BECC2DE5F12700DB6767 /* DependenciesTestSupport in Frameworks */ = {isa = PBXBuildFile; productRef = F760BECB2DE5F12700DB6767 /* DependenciesTestSupport */; };
 		F7FA8A3C2DE085410044EA73 /* MVNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F7FA8A322DE085400044EA73 /* MVNetwork.framework */; };
 		F7FA8A472DE085410044EA73 /* MVNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F7FA8A322DE085400044EA73 /* MVNetwork.framework */; };
 		F7FA8A482DE085410044EA73 /* MVNetwork.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = F7FA8A322DE085400044EA73 /* MVNetwork.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		F7FA8B512DE227430044EA73 /* Dependencies in Frameworks */ = {isa = PBXBuildFile; productRef = F7FA8B502DE227430044EA73 /* Dependencies */; };
 		F7FA8B532DE227430044EA73 /* DependenciesMacros in Frameworks */ = {isa = PBXBuildFile; productRef = F7FA8B522DE227430044EA73 /* DependenciesMacros */; };
-		F7FA8B552DE227430044EA73 /* DependenciesTestSupport in Frameworks */ = {isa = PBXBuildFile; productRef = F7FA8B542DE227430044EA73 /* DependenciesTestSupport */; };
 		F7FA8B652DE45F890044EA73 /* Collections in Frameworks */ = {isa = PBXBuildFile; productRef = F7FA8B642DE45F890044EA73 /* Collections */; };
 /* End PBXBuildFile section */
 
@@ -70,6 +68,13 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
+		F7AFEA8F2DE6FB6D00901373 /* Exceptions for "MoviesApp" folder in "MoviesAppTests" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Mocks/MockMovieAPIClient.swift,
+			);
+			target = F7B193302DE07214004F7C8D /* MoviesAppTests */;
+		};
 		F7FA8A492DE085410044EA73 /* Exceptions for "MVNetwork" folder in "MVNetwork" target */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			publicHeaders = (
@@ -99,6 +104,7 @@
 			isa = PBXFileSystemSynchronizedRootGroup;
 			exceptions = (
 				F7FA8A652DE0AB090044EA73 /* Exceptions for "MoviesApp" folder in "MoviesApp" target */,
+				F7AFEA8F2DE6FB6D00901373 /* Exceptions for "MoviesApp" folder in "MoviesAppTests" target */,
 				F7FA8A662DE0AB090044EA73 /* Exceptions for "MoviesApp" folder in "MVNetwork" target */,
 			);
 			path = MoviesApp;
@@ -139,7 +145,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F7FA8B552DE227430044EA73 /* DependenciesTestSupport in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -156,7 +161,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				F7FA8A3C2DE085410044EA73 /* MVNetwork.framework in Frameworks */,
-				F760BECC2DE5F12700DB6767 /* DependenciesTestSupport in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -250,7 +254,6 @@
 			);
 			name = MoviesAppTests;
 			packageProductDependencies = (
-				F7FA8B542DE227430044EA73 /* DependenciesTestSupport */,
 			);
 			productName = MoviesAppTests;
 			productReference = F7B193312DE07214004F7C8D /* MoviesAppTests.xctest */;
@@ -299,7 +302,6 @@
 			);
 			name = MVNetworkTests;
 			packageProductDependencies = (
-				F760BECB2DE5F12700DB6767 /* DependenciesTestSupport */,
 			);
 			productName = MVNetworkTests;
 			productReference = F7FA8A3B2DE085410044EA73 /* MVNetworkTests.xctest */;
@@ -874,11 +876,6 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		F760BECB2DE5F12700DB6767 /* DependenciesTestSupport */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = F7FA8B4F2DE227430044EA73 /* XCRemoteSwiftPackageReference "swift-dependencies" */;
-			productName = DependenciesTestSupport;
-		};
 		F7FA8B502DE227430044EA73 /* Dependencies */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = F7FA8B4F2DE227430044EA73 /* XCRemoteSwiftPackageReference "swift-dependencies" */;
@@ -888,11 +885,6 @@
 			isa = XCSwiftPackageProductDependency;
 			package = F7FA8B4F2DE227430044EA73 /* XCRemoteSwiftPackageReference "swift-dependencies" */;
 			productName = DependenciesMacros;
-		};
-		F7FA8B542DE227430044EA73 /* DependenciesTestSupport */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = F7FA8B4F2DE227430044EA73 /* XCRemoteSwiftPackageReference "swift-dependencies" */;
-			productName = DependenciesTestSupport;
 		};
 		F7FA8B642DE45F890044EA73 /* Collections */ = {
 			isa = XCSwiftPackageProductDependency;

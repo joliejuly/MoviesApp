@@ -5,23 +5,17 @@ import MVNetwork
 import Dependencies
 
 final class MovieImageLoaderImplTests: XCTestCase {
+    var loader: MovieImageLoaderImpl = MovieImageLoaderImpl()
     var api: MockImageLoader!
-    var loader: MovieImageLoaderImpl!
     
-    override func setUp() {
-        super.setUp()
-        api = MockImageLoader()
-        loader = withDependencies {
+    override func invokeTest() {
+        let api = MockImageLoader()
+        self.api = api
+        withDependencies {
             $0.imageLoader = api
         } operation: {
-            MovieImageLoaderImpl()
+            super.invokeTest()
         }
-    }
-    
-    override func tearDown() {
-        api = nil
-        loader = nil
-        super.tearDown()
     }
     
     func testFetchThumbnailWithValidDataReturnsImage() async throws {
@@ -61,25 +55,5 @@ final class MovieImageLoaderImplTests: XCTestCase {
     func testClearCacheCallsAPI() async throws {
         await loader.clearCache()
         XCTAssertTrue(api.clearCalled)
-    }
-}
-
-
-final class MockImageLoader: ImageLoader {
-    var fetchCalls: [(path: String, size: ImageSize)] = []
-    var fetchResult: Data?
-    var fetchError: Error?
-    var clearCalled = false
-    
-    func fetchImage(path: String, size: ImageSize) async throws -> Data {
-        fetchCalls.append((path: path, size: size))
-        if let err = fetchError {
-            throw err
-        }
-        return fetchResult!
-    }
-    
-    func clearCache() async {
-        clearCalled = true
     }
 }
