@@ -58,8 +58,5 @@ struct MovieDetailView: View {
     
     private var image: some View {
         ThumbnailView(image: $detailImage, isLoading: $viewModel.isLoading, showPlaceholder: false)
-            .frame(maxWidth: .infinity, alignment: .center)
-            .padding()
-            .clipped()
     }
 }

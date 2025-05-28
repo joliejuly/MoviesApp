@@ -21,10 +21,15 @@ struct ThumbnailView: View {
                     .padding(20)
             }
             
-            image?
-                .resizable()
-                .scaledToFill()
-                .clipShape(RoundedRectangle(cornerRadius: cornerRadius))
+            if let image = image {
+                image
+                    .resizable()
+                    .scaledToFit()
+                    .clipped()
+                    .mask(
+                        RoundedRectangle(cornerRadius: cornerRadius)
+                    )
+            }
         }
         .aspectRatio(aspectRatio, contentMode: .fit)
         .onDisappear {
