@@ -45,6 +45,7 @@ Alternatively, you can just paste your token in ```Auth -> Bundle+Extension.swif
 ## 📱 To be implemented (if I had more time this week): 
 
   - Coordinator pattern for navigation
+  - Move Domain layer to a separate target
   - ViewModel and DTO tests
   - Snapshot + UI tests
   - More details and nicer UI for Movie details
