@@ -36,16 +36,13 @@ final class MovieListViewModel: ObservableObject {
     
     func updateSuggestions(for query: String) async {
         guard searchTask == nil else { return }
-        guard !query.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty else {
-            suggestions = []
-            filteredMovies = []
-            return
-        }
+        suggestionsTask?.cancel()
         suggestions = []
         filteredMovies = []
-        suggestionsTask?.cancel()
+        guard !query.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty else {
+            return
+        }
         let task = Task {
-            try? await debounce()
             let results = try? await movieService.searchMovies(query: query)
             let titles  = results?.compactMap(\.title) ?? []
             suggestions = titles
@@ -70,7 +67,7 @@ final class MovieListViewModel: ObservableObject {
         try await task.value
     }
     
-    private func debounce() async throws {
+    func debounce() async throws {
         try await Task.sleep(nanoseconds: 500_000_000)
     }
 }
