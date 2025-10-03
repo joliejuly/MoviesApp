@@ -23,7 +23,6 @@ struct MovieDetailView: View {
                 }
             }
         }
-        .scrollBounceBehavior(.basedOnSize)
         .padding(.horizontal, 24)
         .navigationBarTitleDisplayMode(.inline)
         .navigationTitle(movie?.title ?? "Movie Detail")

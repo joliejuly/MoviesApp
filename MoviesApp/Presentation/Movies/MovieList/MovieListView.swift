@@ -57,7 +57,7 @@ struct MovieListView: View {
                     try await viewModel.loadSearchResults(query: searchText)
                 }
             }
-            .onChange(of: searchText) { _, newValue in
+            .onChange(of: searchText) { newValue in
                 Task {
                     try? await viewModel.debounce()
                     await viewModel.updateSuggestions(for: newValue)
