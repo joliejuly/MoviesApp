@@ -8,6 +8,7 @@ struct MovieListView: View {
     @State private var selectedMovie: Movie?
     @State private var searchText = ""
     @State private var showError = false
+    @State private var isSearchPresented = true
     
     var body: some View {
         NavigationStack(path: $path) {
@@ -32,11 +33,13 @@ struct MovieListView: View {
             .task {
                 do {
                     try await viewModel.loadMoreIfNeeded()
+                    isSearchPresented = true
                 } catch {
                     showError = true
+                    isSearchPresented = false
                 }
             }
-            .searchable(text: $searchText) {
+            .searchable(text: $searchText, isPresented: $isSearchPresented) {
                 ForEach(viewModel.suggestions.indices, id: \.self) { index in
                     let suggestion = viewModel.suggestions[index]
                     Button {
