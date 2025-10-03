@@ -5,4 +5,6 @@ struct Movie: Equatable, Identifiable, Hashable {
     let title: String
     let originalTitle: String
     let posterPath: String?
+    let releaseDate: Date?
+    let rating: Double?
 }

@@ -7,7 +7,9 @@ struct MovieMapper {
             id: dto.id,
             title: dto.originalTitle.capitalized(with: Locale.autoupdatingCurrent),
             originalTitle: dto.title.capitalized(with: Locale.autoupdatingCurrent),
-            posterPath: dto.posterPath
+            posterPath: dto.posterPath,
+            releaseDate: dto.releaseDate,
+            rating: dto.voteAverage
         )
     }
 }

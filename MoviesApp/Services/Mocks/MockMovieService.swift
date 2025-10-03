@@ -1,11 +1,12 @@
+import Foundation
 final class MockMovieService: MovieService {
     
     func fetchLatest(page: Int) async throws -> Page<Movie> {
         return Page(
             index: 1,
             items: [
-                Movie(id: 1, title: "Mock Movie 1", originalTitle: "", posterPath: "/mock1.jpg"),
-                Movie(id: 2, title: "Mock Movie 2", originalTitle: "", posterPath: "/mock2.jpg")
+                Movie(id: 1, title: "Mock Movie 1", originalTitle: "", posterPath: "/mock1.jpg", releaseDate: Date(), rating: 8.7),
+                Movie(id: 2, title: "Mock Movie 2", originalTitle: "", posterPath: "/mock2.jpg", releaseDate: Date(), rating: 8.8)
             ],
             totalPages: 1
         )
@@ -24,8 +25,8 @@ final class MockMovieService: MovieService {
     
     func searchMovies(query: String) async throws -> [Movie] {
         return [
-            Movie(id: 1, title: "Mock Movie 1", originalTitle: "", posterPath: "/mock1.jpg"),
-            Movie(id: 2, title: "Mock Movie 2", originalTitle: "", posterPath: "/mock2.jpg")
+            Movie(id: 1, title: "Mock Movie 1", originalTitle: "", posterPath: "/mock1.jpg", releaseDate: Date(), rating: 8.8),
+            Movie(id: 2, title: "Mock Movie 2", originalTitle: "", posterPath: "/mock2.jpg", releaseDate: Date(), rating: 8.8)
         ]
     }
 }

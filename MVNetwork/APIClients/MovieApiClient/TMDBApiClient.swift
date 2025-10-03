@@ -23,7 +23,7 @@ public struct TMDBApiClient: MovieAPIClient {
         let date = yyyyMMddDateFormatter.string(from: Date())
         
         let endpoint = Endpoint(
-            path: "discover/movie",
+            path: "movie/top_rated",
             queryItems: [
                 URLQueryItem(name: "include_adult", value: "false"),
                 URLQueryItem(name: "sort_by", value: "release_date.desc"),

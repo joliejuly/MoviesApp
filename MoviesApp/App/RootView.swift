@@ -8,10 +8,15 @@ struct RootView: View {
     var body: some View {
         TabView {
             MovieListView(router: moviesRouter)
-                .tabItem { Label("New movies", systemImage: "popcorn") }
+                .tabItem {
+                    Label("Movies", systemImage: "popcorn")
+                }
             
             Color.red
-                .tabItem { Label("About", systemImage: "magnifyingglass") }
+                .tabItem {
+                    Label("About", systemImage: "info.bubble.fill")
+                }
         }
+        
     }
 }

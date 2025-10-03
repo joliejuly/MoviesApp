@@ -12,8 +12,18 @@ struct MovieCell: View {
             VStack(alignment: .leading, spacing: 12) {
                 Text(movie.originalTitle)
                     .font(.headline)
-                Text(movie.title)
-                    .font(.body)
+                if movie.originalTitle != movie.title {
+                    Text("Original title: \(movie.title)")
+                        .font(.body)
+                }
+                if let releaseDate = viewModel.releaseYear(for: movie) {
+                    Text(releaseDate)
+                        .font(.caption)
+                }
+                if let rating = viewModel.rating(for: movie) {
+                    Text(rating)
+                        .font(.caption)
+                }
             }
             Spacer()
         }

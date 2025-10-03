@@ -29,7 +29,7 @@ struct MovieListView: View {
                     errorView
                 }
             }
-            .navigationTitle("New movies")
+            .navigationTitle("Top rated movies")
             .task {
                 do {
                     try await viewModel.loadMoreIfNeeded()

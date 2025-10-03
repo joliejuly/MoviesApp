@@ -16,4 +16,16 @@ final class MovieCellViewModel: ObservableObject {
         guard let posterPath = movie.posterPath else { return }
         image = try await movieImageLoader.fetchThumbnail(path: posterPath)
     }
+    
+    func releaseYear(for movie: Movie) -> String?  {
+        guard let date = movie.releaseDate else { return nil }
+        let year = yearDateFormatter.string(from: date)
+        return "Release year: \(year)"
+    }
+    
+    func rating(for movie: Movie) -> String?  {
+        guard let rating = movie.rating else { return nil }
+        return "Rating: \(rating)"
+    }
+    
 }
