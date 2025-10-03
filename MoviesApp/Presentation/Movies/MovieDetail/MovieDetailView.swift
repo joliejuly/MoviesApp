@@ -13,7 +13,6 @@ struct MovieDetailView: View {
                 image
                 details
                     .frame(maxWidth: .infinity, alignment: .leading)
-                    .padding(.horizontal)
                 Spacer()
             }
             .task(id: movie?.id) {
@@ -26,6 +25,7 @@ struct MovieDetailView: View {
         .padding(.horizontal, 24)
         .navigationBarTitleDisplayMode(.inline)
         .navigationTitle(movie?.title ?? "Movie Detail")
+        .toolbar(.hidden, for: .tabBar)
     }
     
     @ViewBuilder

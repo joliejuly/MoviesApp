@@ -2,11 +2,11 @@ import SwiftUI
 
 /// iOS-15 navigation helper
 @available(iOS, introduced: 15, deprecated: 16)
-private struct LegacyRootWrapper<Route: Hashable, Root: View, Destination: View>: View {
+struct LegacyRootWrapper<Route: Hashable, Root: View, Destination: View>: View {
     
     @ObservedObject var router: Router<Route>
-    let root: () -> Root
     let destination: (Route) -> Destination
+    let root: () -> Root
     
     var body: some View {
         root()

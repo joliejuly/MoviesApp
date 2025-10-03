@@ -2,6 +2,8 @@ import SwiftUI
 
 struct MovieListView: View {
     
+    @ObservedObject var router: Router<MoviesRoute>
+    
     @StateObject private var viewModel = MovieListViewModel()
     
     @State private var path: [Movie] = []
@@ -11,23 +13,21 @@ struct MovieListView: View {
     @State private var isSearchPresented = true
     
     var body: some View {
-        NavigationStack(path: $path) {
+        CommonNavigationView(router: router, destination: destination) {
             List(filteredMovies) { movie in
-                NavigationLink(value: movie) {
-                    MovieCell(movie: movie)
-                        .task(id: movie.id) {
-                            try? await viewModel.loadMoreIfNeeded(currentItem: movie)
-                        }
-                }
-                .listStyle(.plain)
+                MovieCell(movie: movie)
+                    .task(id: movie.id) {
+                        try? await viewModel.loadMoreIfNeeded(currentItem: movie)
+                    }
+                    .listStyle(.plain)
+                    .onTapGesture {
+                        router.push(.detail(movie: movie))
+                    }
             }
             .overlay {
                 if showError {
-                  errorView
+                    errorView
                 }
-            }
-            .navigationDestination(for: Movie.self) { movie in
-                MovieDetailView(movie: movie)
             }
             .navigationTitle("New movies")
             .task {
@@ -63,6 +63,15 @@ struct MovieListView: View {
                     await viewModel.updateSuggestions(for: newValue)
                 }
             }
+        }
+    }
+    
+    @ViewBuilder
+    private func destination(_ route: MoviesRoute) -> some View {
+        if case .detail(let movie) = route {
+            MovieDetailView(movie: movie)
+        } else {
+            EmptyView()
         }
     }
     

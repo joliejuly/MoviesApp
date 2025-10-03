@@ -3,19 +3,19 @@ import SwiftUI
 struct CommonNavigationView<Route: Hashable, Root: View, Destination: View>: View {
     
     @ObservedObject var router: Router<Route>
-    /// Root screen of the flow
-    private let root: () -> Root
     /// Factory that converts a Route into a destination view
     private let destination: (Route) -> Destination
+    /// Root screen of the flow
+    private let root: () -> Root
     
     init(
         router: Router<Route>,
-        @ViewBuilder root: @escaping () -> Root,
-        @ViewBuilder destination: @escaping (Route) -> Destination
+        @ViewBuilder destination: @escaping (Route) -> Destination,
+        @ViewBuilder root: @escaping () -> Root
     ) {
         self.router = router
-        self.root = root
         self.destination = destination
+        self.root = root
     }
     
     var body: some View {
@@ -29,8 +29,8 @@ struct CommonNavigationView<Route: Hashable, Root: View, Destination: View>: Vie
                 NavigationView {
                     LegacyRootWrapper(
                         router: router,
-                        root: root,
-                        destination: destination
+                        destination: destination,
+                        root: root
                     )
                 }
                 .navigationViewStyle(.stack)

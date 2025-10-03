@@ -9,7 +9,7 @@ struct MoviesApp: App {
     var body: some Scene {
         WindowGroup {
             if !isTesting {
-                MovieListView()
+                RootView()
             }
         }
     }
