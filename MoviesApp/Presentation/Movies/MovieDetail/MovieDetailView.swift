@@ -25,7 +25,7 @@ struct MovieDetailView: View {
         .padding(.horizontal, 24)
         .navigationBarTitleDisplayMode(.inline)
         .navigationTitle(movie?.title ?? "Movie Detail")
-        .toolbar(.hidden, for: .tabBar)
+        .hideTabbarOnPush
     }
     
     @ViewBuilder
