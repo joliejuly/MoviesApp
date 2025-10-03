@@ -57,7 +57,7 @@ struct MovieListView: View {
                     try await viewModel.loadSearchResults(query: searchText)
                 }
             }
-            .onChange(of: searchText) { newValue in
+            .onOneValueChange(of: searchText) { newValue in
                 Task {
                     try? await viewModel.debounce()
                     await viewModel.updateSuggestions(for: newValue)
@@ -74,6 +74,18 @@ struct MovieListView: View {
                 .bold()
                 .multilineTextAlignment(.center)
                 .padding(.horizontal, 24)
+            Button("Retry") {
+                showError = false
+                Task {
+                    do {
+                        try? await viewModel.debounce()
+                        try await viewModel.loadMoreIfNeeded()
+                    } catch {
+                        showError = true
+                        isSearchPresented = false
+                    }
+                }
+            }
         }
     }
     
