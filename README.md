@@ -8,7 +8,7 @@ This app fetches and displays movie data from [The Movie Database (TMDb)](https:
 
 ## 🚀 Getting Started
 
-To run the app on your machine after cloning the repo ```git@github.com:joliejuly/MoviesApp_Neugelb.git```:
+To run the app on your machine after cloning the repo ```git@github.com:joliejuly/MoviesApp.git```:
 
 1.	**Create your Access Token**:
 You’ll need a TMDb access token to fetch movie data. You can get one for free by creating an account at TMDb and generating a personal API token.
