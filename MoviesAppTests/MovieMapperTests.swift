@@ -8,7 +8,9 @@ final class MovieMapperTests: XCTestCase {
             id: 42,
             title: "the quick brown fox",
             originalTitle: "Original Title",
-            posterPath: "/poster.jpg"
+            posterPath: "/poster.jpg",
+            releaseDate: Date(),
+            voteAverage: 8.7
         )
         let movie = MovieMapper.map(dto)
         XCTAssertEqual(movie.id, 42)
@@ -23,7 +25,9 @@ final class MovieMapperTests: XCTestCase {
             id: 0,
             title: "test",
             originalTitle: "",
-            posterPath: ""
+            posterPath: "",
+            releaseDate: Date(),
+            voteAverage: 8.7
         )
         let movie = MovieMapper.map(dto)
         XCTAssertEqual(movie.originalTitle, "Test")

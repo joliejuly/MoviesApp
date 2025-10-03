@@ -19,7 +19,14 @@ final class MovieServiceImplTests: XCTestCase {
 
     func testFetchLatest_ReturnsMappedPage() async throws {
         let dtos = [
-            MovieDTO(id: 10, title: "t", originalTitle: "OT", posterPath: "/p")
+            MovieDTO(
+                id: 10,
+                title: "t",
+                originalTitle: "OT",
+                posterPath: "/p",
+                releaseDate: Date(),
+                voteAverage: 8.7
+            )
         ]
         api.latestStub = PaginatedResponseDTO(
             page: 2,
