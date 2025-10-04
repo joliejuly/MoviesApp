@@ -5,7 +5,6 @@ struct MovieDetailView: View {
     let movie: Movie?
     
     @StateObject private var viewModel = MovieDetailViewModel()
-    @State private var detailImage: Image?
     
     var body: some View {
         ScrollView(showsIndicators: false) {
@@ -16,10 +15,7 @@ struct MovieDetailView: View {
                 Spacer()
             }
             .task(id: movie?.id) {
-                try? await viewModel.loadDetails(for: movie)
-                if let loadedImage = viewModel.movieDetailInfo?.movieImage {
-                    detailImage = loadedImage
-                }
+                try? await viewModel.loadImage(for: movie)
             }
         }
         .padding(.horizontal, 24)
@@ -56,6 +52,6 @@ struct MovieDetailView: View {
     }
     
     private var image: some View {
-        ThumbnailView(image: $detailImage, isLoading: $viewModel.isLoading, showPlaceholder: false)
+        ThumbnailView(image: $viewModel.detailImage, isLoading: $viewModel.isLoading, showPlaceholder: false)
     }
 }
