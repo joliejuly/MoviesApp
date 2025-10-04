@@ -8,7 +8,7 @@ This app fetches and displays movie data from [The Movie Database (TMDb)](https:
 
 ## 🚀 Getting Started
 
-To run the app on your machine, clone the repo ```git@github.com:joliejuly/MoviesApp.git```. 
+To run the app on your machine, clone this repo: ```git clone git@github.com:joliejuly/MoviesApp.git```. 
 
 > [!IMPORTANT]
 > **If you have a ```Secrets.xcconfig``` file provided by me, just drag it to the root of the project and run.**
