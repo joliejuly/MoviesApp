@@ -5,10 +5,21 @@ import Dependencies
 final class MovieListViewModel: ObservableObject {
     
     @Dependency(\.movieService) private var movieService
+    
+    @Published var searchText = "" {
+        willSet {
+            Task {
+                try? await debounce()
+                await updateSuggestions(for: newValue)
+            }
+        }
+    }
+    
     @Published private(set) var movies: [Movie] = []
     @Published private(set) var filteredMovies: [Movie] = []
     @Published private(set) var suggestions: [String] = []
     
+
     private var searchTask: Task<Void, Error>?
     private var suggestionsTask: Task<Void, Never>?
     
@@ -48,19 +59,21 @@ final class MovieListViewModel: ObservableObject {
         await task.value
     }
     
-    func loadSearchResults(query: String) async throws {
-        suggestions = []
-        filteredMovies = []
-        suggestionsTask?.cancel()
-        searchTask?.cancel()
-        let task = Task {
-            try await debounce()
-            let movies = try await movieService.searchMovies(query: query)
-            filteredMovies = movies
-            searchTask = nil
+    func loadSearchResults(query: String) {
+        Task { @MainActor in
+            suggestions = []
+            filteredMovies = []
+            suggestionsTask?.cancel()
+            searchTask?.cancel()
+            let task = Task { @MainActor in
+                try await debounce()
+                let movies = try await movieService.searchMovies(query: query)
+                filteredMovies = movies
+                searchTask = nil
+            }
+            searchTask = task
+            try await task.value
         }
-        searchTask = task
-        try await task.value
     }
     
     func debounce() async throws {

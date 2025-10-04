@@ -14,6 +14,7 @@ final class MovieDetailViewModel: ObservableObject {
         isLoading = true
         defer { isLoading = false }
         guard let movie else { return }
+        
         async let detail = try await movieService.fetchDetails(id: movie.id)
         async let image: Image? = {
             guard let path = movie.posterPath else { return nil }

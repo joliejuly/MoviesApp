@@ -6,9 +6,6 @@ struct MovieListView: View {
     
     @StateObject private var viewModel = MovieListViewModel()
     
-    @State private var path: [Movie] = []
-    @State private var selectedMovie: Movie?
-    @State private var searchText = ""
     @State private var showError = false
     @State private var isSearchPresented = true
     
@@ -39,13 +36,11 @@ struct MovieListView: View {
                     isSearchPresented = false
                 }
             }
-            .searchable(text: $searchText, isPresented: $isSearchPresented) {
+            .searchable(text: $viewModel.searchText, isPresented: $isSearchPresented) {
                 ForEach(viewModel.suggestions.indices, id: \.self) { index in
                     let suggestion = viewModel.suggestions[index]
                     Button {
-                        Task {
-                            try await viewModel.loadSearchResults(query: suggestion)
-                        }
+                        viewModel.loadSearchResults(query: suggestion)
                     } label: {
                         Text(suggestion)
                     }
@@ -53,15 +48,7 @@ struct MovieListView: View {
                 }
             }
             .onSubmit(of: .search) {
-                Task {
-                    try await viewModel.loadSearchResults(query: searchText)
-                }
-            }
-            .onOneValueChange(of: searchText) { newValue in
-                Task {
-                    try? await viewModel.debounce()
-                    await viewModel.updateSuggestions(for: newValue)
-                }
+                viewModel.loadSearchResults(query: viewModel.searchText)
             }
         }
     }
@@ -99,6 +86,6 @@ struct MovieListView: View {
     }
     
     private var filteredMovies: [Movie] {
-        searchText.isEmpty ? viewModel.movies : viewModel.filteredMovies
+        viewModel.searchText.isEmpty ? viewModel.movies : viewModel.filteredMovies
     }
 }
