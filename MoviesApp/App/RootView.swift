@@ -12,7 +12,7 @@ struct RootView: View {
                     Label("Movies", systemImage: "popcorn")
                 }
             
-            Color.red
+            AboutPageView()
                 .tabItem {
                     Label("About", systemImage: "info.bubble.fill")
                 }
