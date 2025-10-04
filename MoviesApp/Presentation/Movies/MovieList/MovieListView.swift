@@ -5,13 +5,10 @@ struct MovieListView: View {
     @ObservedObject var router: Router<MoviesRoute>
     
     @StateObject private var viewModel = MovieListViewModel()
-    
-    @State private var showError = false
-    @State private var isSearchPresented = true
-    
+
     var body: some View {
         CommonNavigationView(router: router, destination: destination) {
-            List(filteredMovies) { movie in
+            List(viewModel.moviesToShow) { movie in
                 MovieCell(movie: movie)
                     .task(id: movie.id) {
                         try? await viewModel.loadMoreIfNeeded(currentItem: movie)
@@ -22,33 +19,49 @@ struct MovieListView: View {
                     }
             }
             .overlay {
-                if showError {
-                    errorView
-                }
+                errorView
             }
             .navigationTitle("Top rated movies")
             .task {
-                do {
-                    try await viewModel.loadMoreIfNeeded()
-                    isSearchPresented = true
-                } catch {
-                    showError = true
-                    isSearchPresented = false
-                }
+                await viewModel.initialLoadMovies()
             }
-            .searchable(text: $viewModel.searchText, isPresented: $isSearchPresented) {
-                ForEach(viewModel.suggestions.indices, id: \.self) { index in
-                    let suggestion = viewModel.suggestions[index]
-                    Button {
-                        viewModel.loadSearchResults(query: suggestion)
-                    } label: {
-                        Text(suggestion)
-                    }
-                    .searchCompletion(suggestion)
-                }
+            .task(id: viewModel.searchText) {
+                await viewModel.updateSuggestions(for: viewModel.searchText)
+            }
+            .searchable(text: $viewModel.searchText, isPresented: $viewModel.isSearchPresented) {
+                suggestionsView
             }
             .onSubmit(of: .search) {
                 viewModel.loadSearchResults(query: viewModel.searchText)
+            }
+        }
+    }
+    
+    private var suggestionsView: some View {
+        ForEach(viewModel.suggestions.indices, id: \.self) { index in
+            let suggestion = viewModel.suggestions[index]
+            Button {
+                viewModel.loadSearchResults(query: suggestion)
+            } label: {
+                Text(suggestion)
+            }
+            .searchCompletion(suggestion)
+        }
+    }
+    
+    @ViewBuilder
+    private var errorView: some View {
+        if viewModel.showError {
+            VStack(spacing: 24) {
+                Image(systemName: "exclamationmark.triangle.fill")
+                    .font(.largeTitle)
+                Text("Error loading movies.\nProbably api token is missing.")
+                    .bold()
+                    .multilineTextAlignment(.center)
+                    .padding(.horizontal, 24)
+                Button("Retry") {
+                    viewModel.retryLoadingMovies()
+                }
             }
         }
     }
@@ -60,32 +73,5 @@ struct MovieListView: View {
         } else {
             EmptyView()
         }
-    }
-    
-    private var errorView: some View {
-        VStack(spacing: 24) {
-            Image(systemName: "exclamationmark.triangle.fill")
-                .font(.largeTitle)
-            Text("Error loading movies.\nProbably api token is missing.")
-                .bold()
-                .multilineTextAlignment(.center)
-                .padding(.horizontal, 24)
-            Button("Retry") {
-                showError = false
-                Task {
-                    do {
-                        try? await viewModel.debounce()
-                        try await viewModel.loadMoreIfNeeded()
-                    } catch {
-                        showError = true
-                        isSearchPresented = false
-                    }
-                }
-            }
-        }
-    }
-    
-    private var filteredMovies: [Movie] {
-        viewModel.searchText.isEmpty ? viewModel.movies : viewModel.filteredMovies
     }
 }

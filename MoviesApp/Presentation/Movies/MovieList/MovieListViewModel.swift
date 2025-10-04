@@ -6,20 +6,18 @@ final class MovieListViewModel: ObservableObject {
     
     @Dependency(\.movieService) private var movieService
     
-    @Published var searchText = "" {
-        willSet {
-            Task {
-                try? await debounce()
-                await updateSuggestions(for: newValue)
-            }
-        }
+    var moviesToShow: [Movie] {
+        searchText.isEmpty ? movies : filteredMovies
     }
+    
+    @Published var isSearchPresented = true
+    @Published var searchText = ""
     
     @Published private(set) var movies: [Movie] = []
     @Published private(set) var filteredMovies: [Movie] = []
     @Published private(set) var suggestions: [String] = []
+    @Published private(set) var showError = false
     
-
     private var searchTask: Task<Void, Error>?
     private var suggestionsTask: Task<Void, Never>?
     
@@ -27,6 +25,16 @@ final class MovieListViewModel: ObservableObject {
         Paginator(loadPage: movieService.fetchLatest)
     }()
 
+    func initialLoadMovies() async {
+        do {
+            try await loadMoreIfNeeded()
+            isSearchPresented = true
+        } catch {
+            showError = true
+            isSearchPresented = false
+        }
+    }
+    
     func loadMoreIfNeeded(currentItem: Movie? = nil) async throws {
         guard
             currentItem == nil ||
@@ -42,6 +50,7 @@ final class MovieListViewModel: ObservableObject {
     }
     
     func updateSuggestions(for query: String) async {
+        try? await debounce()
         guard searchTask == nil else { return }
         suggestionsTask?.cancel()
         suggestions = []
@@ -78,5 +87,18 @@ final class MovieListViewModel: ObservableObject {
     
     func debounce() async throws {
         try await Task.sleep(nanoseconds: 500_000_000)
+    }
+    
+    func retryLoadingMovies() {
+        showError = false
+        Task { @MainActor in
+            do {
+                try? await debounce()
+                try await loadMoreIfNeeded()
+            } catch {
+                showError = true
+                isSearchPresented = false
+            }
+        }
     }
 }
