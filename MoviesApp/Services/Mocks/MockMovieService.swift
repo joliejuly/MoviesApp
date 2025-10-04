@@ -22,6 +22,13 @@ final class MockMovieService: MovieService {
             overview: "This is a mock overview of the movie."
         )
     }
+
+    func fetchSuggestions(query: String) async throws -> [SuggestionMovie] {
+        return [
+            SuggestionMovie(id: 1, title: "Mock Movie 1"),
+            SuggestionMovie(id: 2, title: "Mock Movie 2")
+        ]
+    }
     
     func searchMovies(query: String) async throws -> [Movie] {
         return [

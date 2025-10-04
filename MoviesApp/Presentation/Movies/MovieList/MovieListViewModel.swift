@@ -50,7 +50,7 @@ final class MovieListViewModel: ObservableObject {
             return
         }
         let task = Task {
-            let results = try? await movieService.searchMovies(query: query)
+            let results = try? await movieService.fetchSuggestions(query: query)
             let titles  = results?.compactMap(\.title) ?? []
             suggestions = titles
             suggestionsTask = nil

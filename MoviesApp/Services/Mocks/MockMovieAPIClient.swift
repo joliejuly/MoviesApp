@@ -25,4 +25,8 @@ final class MockMovieAPIClient: MovieAPIClient {
       return []
     }
     
+    func fetchSuggestions(query: String) async throws -> [SuggestionMovieDTO] {
+        return []
+    }
+    
 }

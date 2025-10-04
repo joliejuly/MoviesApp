@@ -21,6 +21,12 @@ final class MovieServiceImpl: MovieService {
         return movieDetail
     }
     
+    func fetchSuggestions(query: String) async throws -> [SuggestionMovie] {
+        let dto = try await api.fetchSuggestions(query: query)
+        let movies = dto.map { MovieMapper.suggestionMap($0) }
+        return movies
+    }
+    
     func searchMovies(query: String) async throws -> [Movie] {
         let dto = try await api.searchMovies(query: query)
         let movies = dto.map { MovieMapper.map($0) }

@@ -47,8 +47,19 @@ public struct TMDBApiClient: MovieAPIClient {
         return try await api.send(endpoint, type: MovieDetailDTO.self, baseURL: baseURL)
     }
     
+    public func fetchSuggestions(query: String) async throws -> [SuggestionMovieDTO] {
+        let result = try await api.send(searchEndpoint(query), type: PaginatedResponseDTO<SuggestionMovieDTO>.self, baseURL: baseURL)
+        return result.results
+    }
+    
     public func searchMovies(query: String) async throws -> [MovieDTO] {
-        let endpoint = Endpoint(
+        let result = try await api.send(searchEndpoint(query), type: PaginatedResponseDTO<MovieDTO>.self, baseURL: baseURL)
+        
+        return result.results
+    }
+    
+    private func searchEndpoint(_ query: String) -> Endpoint {
+        Endpoint(
             path: "search/movie",
             queryItems: [
                 URLQueryItem(name: "query", value: query),
@@ -59,9 +70,5 @@ public struct TMDBApiClient: MovieAPIClient {
                 URLQueryItem(name: "include_image_language", value: "\(shortLanguageCode),null")
             ]
         )
-        
-        let result = try await api.send(endpoint, type: PaginatedResponseDTO<MovieDTO>.self, baseURL: baseURL)
-        
-        return result.results
     }
 }

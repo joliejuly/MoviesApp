@@ -8,3 +8,8 @@ struct Movie: Equatable, Identifiable, Hashable {
     let releaseDate: Date?
     let rating: Double?
 }
+
+struct SuggestionMovie: Equatable, Identifiable, Hashable {
+    let id: Int
+    let title: String
+}
