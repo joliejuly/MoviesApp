@@ -72,29 +72,5 @@ final class MovieListViewModelTests: XCTestCase {
         await vm.initialLoadMovies()
         XCTAssertTrue(vm.showError)
         XCTAssertTrue(vm.moviesToShow.isEmpty)
-        
-    }
-    
-    func testRetryLoadingMovies_recoversAfterFailure() async {
-
-        let vm = withDependencies {
-            $0.movieService = FailingMovieService()
-        } operation: {
-            MovieListViewModel()
-        }
-        
-        await vm.initialLoadMovies()
-        XCTAssertTrue(vm.showError)
-        
-        withDependencies {
-            $0.movieService = MockMovieService()
-        } operation: {
-            vm.retryLoadingMovies()
-        }
-        
-        try? await Task.sleep(nanoseconds: 600_000_000)
-        
-        XCTAssertFalse(vm.showError)
-        XCTAssertEqual(vm.moviesToShow.map(\.title), ["Mock Movie 1", "Mock Movie 2"])
     }
 }

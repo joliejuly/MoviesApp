@@ -45,5 +45,3 @@ let yyyyMMddDateFormatter: DateFormatter = {
     formatter.timeZone = TimeZone(secondsFromGMT: 0)
     return formatter
 }()
-
-
