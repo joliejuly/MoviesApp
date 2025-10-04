@@ -12,6 +12,5 @@ struct AboutPageView: View {
             WebView(url: readmeURL)
                 .navigationTitle("About the app")
         }
-        
     }
 }

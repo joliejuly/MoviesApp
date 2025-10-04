@@ -13,12 +13,6 @@ struct HiddenToolbarOnPush: ViewModifier {
                 .toolbar(.hidden, for: .tabBar)
         } else {
             content
-                .onAppear {
-                    UITabBar.appearance().isHidden = true
-                }
-                .onDisappear{
-                    UITabBar.appearance().isHidden = false
-                }
         }
     }
 }
@@ -28,4 +22,3 @@ extension View {
         modifier(HiddenToolbarOnPush())
     }
 }
-
