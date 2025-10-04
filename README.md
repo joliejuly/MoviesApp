@@ -8,7 +8,13 @@ This app fetches and displays movie data from [The Movie Database (TMDb)](https:
 
 ## 🚀 Getting Started
 
-To run the app on your machine after cloning the repo ```git@github.com:joliejuly/MoviesApp.git```:
+To run the app on your machine, clone the repo ```git@github.com:joliejuly/MoviesApp.git```. 
+
+> [!IMPORTANT]
+> **If you have a ```Secrets.xcconfig``` file provided by me, just drag it to the root of the project and run.**
+
+
+If you don't have a ```Secrets.xcconfig``` file, you can create your own in 2 simple steps: 
 
 1.	**Create your Access Token**:
 You’ll need a TMDb access token to fetch movie data. You can get one for free by creating an account at TMDb and generating a personal API token.
