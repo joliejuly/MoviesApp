@@ -1,6 +1,6 @@
 # 🎬 MoviesApp
 
-Welcome to **MoviesApp** – a simple SwiftUI-based movie browser built using modern Swift Concurrency and MVVM architecture.
+Welcome to **MoviesApp** – a simple SwiftUI-based movie browser built using modern Swift Concurrency and MVVM+C architecture.
 
 This app fetches and displays movie data from [The Movie Database (TMDb)](https://www.themoviedb.org/) using their public API.
 
@@ -24,9 +24,9 @@ Alternatively, you can just paste your token in ```Auth -> Bundle+Extension.swif
 
 ## 📱 Features
 
-- Browse latest movies on the main screen with infinite scroll
+- Browse the most popular movies with infinite scroll
 - Search movies by name with autocomplete
-- View movie details
+- Tap movie to see details
 
 --- 
 
@@ -34,6 +34,7 @@ Alternatively, you can just paste your token in ```Auth -> Bundle+Extension.swif
 
  - SwiftUI-powered UI
  - MVVM for Presentation layer
+ - Coordinator pattern for navigation
  - Dependencies for DI 
  - A separate target for the network layer
  - LRU cache for effective image caching
@@ -42,11 +43,8 @@ Alternatively, you can just paste your token in ```Auth -> Bundle+Extension.swif
 
 ---
 
-## 📱 To be implemented (if I had more time this week): 
+## 📱 To be implemented: 
 
-  - Coordinator pattern for navigation
-  - Move Domain layer to a separate target
-  - ViewModel and DTO tests
-  - Snapshot + UI tests
+  - Localization
   - More details and nicer UI for Movie details
 
