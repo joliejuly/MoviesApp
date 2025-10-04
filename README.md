@@ -58,7 +58,7 @@ Dependency management is the only cross-cutting concern in this codebase that is
 - Testability built in. Unit tests can swap concrete implementations with the one-liner
 ```withDependencies```, which is dramatically shorter and less error-prone than re-creating the object graph by hand.
 - Lazy and cached by default. Each service is constructed only on first access and then reused, so start-up work stays near zero even as the feature set grows.
-- Actively maintained and MIT-licensed. It is written by the authors of The Composable Architecture, widely used in production apps, and adds only ~30 KB to the binary.
+- Actively maintained and MIT-licensed. It is written by the authors of The Composable Architecture and widely used in production apps.
 
 
 ## 📱 To be implemented: 
