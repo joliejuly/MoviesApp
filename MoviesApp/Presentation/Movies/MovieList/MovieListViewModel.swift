@@ -51,6 +51,7 @@ final class MovieListViewModel: ObservableObject {
     
     func updateSuggestions(for query: String) async {
         try? await debounce()
+        try? Task.checkCancellation()
         guard searchTask == nil else { return }
         suggestionsTask?.cancel()
         suggestions = []
@@ -69,13 +70,14 @@ final class MovieListViewModel: ObservableObject {
     }
     
     func loadSearchResults(query: String) {
-        Task { @MainActor in
+        Task {
             suggestions = []
             filteredMovies = []
             suggestionsTask?.cancel()
             searchTask?.cancel()
-            let task = Task { @MainActor in
+            let task = Task {
                 try await debounce()
+                try Task.checkCancellation()
                 let movies = try await movieService.searchMovies(query: query)
                 filteredMovies = movies
                 searchTask = nil
@@ -91,7 +93,7 @@ final class MovieListViewModel: ObservableObject {
     
     func retryLoadingMovies() {
         showError = false
-        Task { @MainActor in
+        Task {
             do {
                 try? await debounce()
                 try await loadMoreIfNeeded()
