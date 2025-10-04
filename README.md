@@ -35,13 +35,25 @@ Alternatively, you can just paste your token in ```Auth -> Bundle+Extension.swif
  - SwiftUI-powered UI
  - MVVM for Presentation layer
  - Coordinator pattern for navigation
- - Dependencies for DI 
+ - swift-dependencies for DI (explained below) 
  - A separate target for the network layer
  - LRU cache for effective image caching
  - Background image rendering for fast scrolling 
  - Unit tests with mocks 
 
 ---
+
+## 📱 Why this project uses the [swift‐dependencies](https://github.com/pointfreeco/swift-dependencies) package as the only 3rd party library
+
+Dependency management is the only cross-cutting concern in this codebase that isn’t already handled well by the standard library or SwiftUI. I chose [swift-dependencies](https://github.com/pointfreeco/swift-dependencies) as the single third-party package because it solves that problem cleanly while keeping the overall solution simple and test-friendly. 
+
+**Key points**:
+- Eliminates boiler-plate. Without a helper the same “pass this service down the chain” code would repeat in every view and view-model initializer. The package replaces that with one @Dependency line per use site, so the domain logic stays readable.
+- Testability built in. Unit tests can swap concrete implementations with the one-liner
+```withDependencies```, which is dramatically shorter and less error-prone than re-creating the object graph by hand.
+- Lazy and cached by default. Each service is constructed only on first access and then reused, so start-up work stays near zero even as the feature set grows.
+- Actively maintained and MIT-licensed. It is written by the authors of The Composable Architecture, widely used in production apps, and adds only ~30 KB to the binary.
+
 
 ## 📱 To be implemented: 
 
