@@ -37,3 +37,11 @@ final class MockMovieService: MovieService {
         ]
     }
 }
+
+struct FailingMovieService: MovieService {
+    struct Boom: Error {}
+    func fetchLatest(page: Int) async throws -> Page<Movie> { throw Boom() }
+    func fetchDetails(id: Int) async throws -> MovieDetail { throw Boom() }
+    func fetchSuggestions(query: String) async throws -> [SuggestionMovie] { throw Boom() }
+    func searchMovies(query: String) async throws -> [Movie] { throw Boom() }
+}
