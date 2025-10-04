@@ -25,7 +25,8 @@ final class MovieCellViewModel: ObservableObject {
     
     func rating(for movie: Movie) -> String?  {
         guard let rating = movie.rating else { return nil }
-        return "Rating: \(rating)"
+        let rounded = rating.rounded()
+        return "Rating: \(rounded)"
     }
     
 }
