@@ -1,6 +1,7 @@
 import MVNetwork
 import Dependencies
 
+/// Main DI container. Live values are used in real app, test values - in tests.
 extension DependencyValues {
     
     var headerProvider: HeaderProvider {

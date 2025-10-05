@@ -1,5 +1,6 @@
 import SwiftUI
 
+/// View with movie details. Navigated from the MovieListView
 struct MovieDetailView: View {
     
     let movie: Movie?

@@ -1,3 +1,4 @@
+/// Generic pagination helper
 actor Paginator<Item> {
     
     private let loadPage: (Int) async throws -> Page<Item>

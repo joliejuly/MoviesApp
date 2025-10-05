@@ -2,6 +2,7 @@ import Foundation
 import struct MVNetwork.MovieDTO
 import struct MVNetwork.SuggestionMovieDTO
 
+/// Maps DTOs to presentation models with additional formatting
 struct MovieMapper {
     static func map(_ dto: MovieDTO) -> Movie {
         Movie(

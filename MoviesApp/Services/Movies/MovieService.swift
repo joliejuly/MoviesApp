@@ -1,3 +1,4 @@
+/// A bridge between presentation layer and network for loading movies
 protocol MovieService {
     func fetchLatest(page: Int) async throws -> Page<Movie>
     func fetchDetails(id: Int) async throws -> MovieDetail

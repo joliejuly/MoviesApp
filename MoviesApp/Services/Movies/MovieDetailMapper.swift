@@ -1,6 +1,7 @@
 import Foundation
 import struct MVNetwork.MovieDetailDTO
 
+/// Maps DTOs to presentation models with additional formatting
 struct MovieDetailMapper {
     static func map(_ dto: MovieDetailDTO) -> MovieDetail {
         let genres = dto.genres.map(\.name).joined(separator: ", ")

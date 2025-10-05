@@ -1,5 +1,6 @@
 import SwiftUI
 
+/// Main list of movies with search
 struct MovieListView: View {
     
     @ObservedObject var router: Router<MoviesRoute>
