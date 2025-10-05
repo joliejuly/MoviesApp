@@ -1,5 +1,6 @@
 import SwiftUI
 
+/// Movie poster wrapper. Is used both in movie cell and movie detail. Shows loading progress and a placeholder if needed.
 struct ThumbnailView: View {
     
     @Binding var image: Image?
