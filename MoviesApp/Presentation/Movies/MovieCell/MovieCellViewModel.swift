@@ -19,7 +19,7 @@ final class MovieCellViewModel: ObservableObject {
     
     func originalTitle(for movie: Movie) -> String?  {
         guard movie.originalTitle != movie.title else { return nil }
-        return "Original title: \(movie.title)"
+        return "Original title: \(movie.originalTitle)"
     }
     
     func releaseYear(for movie: Movie) -> String?  {

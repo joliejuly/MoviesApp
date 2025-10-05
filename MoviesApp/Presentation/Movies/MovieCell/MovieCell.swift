@@ -11,7 +11,7 @@ struct MovieCell: View {
             thumbnail
                 .padding(.trailing, 16)
             VStack(alignment: .leading, spacing: 12) {
-                Text(movie.originalTitle)
+                Text(movie.title)
                     .font(.headline)
                 if let originalTitle = viewModel.originalTitle(for: movie) {
                     Text(originalTitle)
