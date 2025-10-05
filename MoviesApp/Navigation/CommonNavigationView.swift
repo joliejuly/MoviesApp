@@ -1,5 +1,8 @@
 import SwiftUI
 
+/// Generic navigation container that uses modern SwiftUI navigation stack and supports old NavigationView for iOS15.
+/// Performs navigation provided by user and updates the path in router.
+/// For each big flow one instance is needed (for example, for a tab or for a modal with internal navigation)
 struct CommonNavigationView<Route: Hashable, Root: View, Destination: View>: View {
     
     @ObservedObject var router: Router<Route>
