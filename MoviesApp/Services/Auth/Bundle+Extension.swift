@@ -3,6 +3,8 @@ import os
 
 extension Bundle {
     
+    /// Access token is stored in Secrets.xcconfig file that is not commited in the repo. See Readme.md for more info.
+    /// In Info.plist is stored an alias that is resolved in runtime.
     var tmdbAccessToken: String {
         guard
             let key = object(forInfoDictionaryKey: "TMDBAccessToken") as? String,

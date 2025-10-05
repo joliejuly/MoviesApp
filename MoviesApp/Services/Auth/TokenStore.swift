@@ -1,5 +1,6 @@
 import Foundation
 
+/// Flexible TokenStore that can be changed in tests
 public protocol TokenStore {
     var currentToken: String? { get }
 }

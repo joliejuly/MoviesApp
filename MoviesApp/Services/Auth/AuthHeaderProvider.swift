@@ -1,5 +1,6 @@
 import MVNetwork
 
+/// Helper that constructs auth header for api
 struct AuthHeaderProvider: HeaderProvider {
     let tokenStore: TokenStore
     
