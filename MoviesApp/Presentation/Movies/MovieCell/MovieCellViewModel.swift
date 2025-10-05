@@ -17,9 +17,14 @@ final class MovieCellViewModel: ObservableObject {
         image = try await movieImageLoader.fetchThumbnail(path: posterPath)
     }
     
+    func originalTitle(for movie: Movie) -> String?  {
+        guard movie.originalTitle != movie.title else { return nil }
+        return "Original title: \(movie.title)"
+    }
+    
     func releaseYear(for movie: Movie) -> String?  {
         guard let date = movie.releaseDate else { return nil }
-        let year = yearDateFormatter.string(from: date)
+        let year = Formatters.yearDateFormatter.string(from: date)
         return "Release year: \(year)"
     }
     

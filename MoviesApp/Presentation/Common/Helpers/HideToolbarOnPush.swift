@@ -1,7 +1,6 @@
 import SwiftUI
 
-/// An old fashioned onChange modifier used to avoid warnings on iOS17
-@available(iOS, introduced: 15.0, deprecated: 26.0, message: "Use the built-in on iOS 16.")
+/// Universal view modifier to support different swiftui APIs for hiding tabbar
 struct HiddenToolbarOnPush: ViewModifier {
     
     func body(content: Content) -> some View {

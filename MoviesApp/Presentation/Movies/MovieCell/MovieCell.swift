@@ -1,5 +1,6 @@
 import SwiftUI
 
+/// A cell that is displayed in MovieListView with a thumbnail image and basic info
 struct MovieCell: View {
     let movie: Movie
     
@@ -12,8 +13,8 @@ struct MovieCell: View {
             VStack(alignment: .leading, spacing: 12) {
                 Text(movie.originalTitle)
                     .font(.headline)
-                if movie.originalTitle != movie.title {
-                    Text("Original title: \(movie.title)")
+                if let originalTitle = viewModel.originalTitle(for: movie) {
+                    Text(originalTitle)
                         .font(.body)
                 }
                 if let releaseDate = viewModel.releaseYear(for: movie) {
