@@ -64,6 +64,7 @@ I also use [swift-collections](https://github.com/apple/swift-collections) to ha
 
 ## 📱 Next steps: 
 
+  - Swift 6 and iOS 26 support 
   - Localization
   - Snapshot and/or UI-tests
   - More details and nice UI for Movie details page
